@@ -5,6 +5,13 @@
  */
 
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `celiagomezdev`,
+        icon: `src/images/favicon.png`,
+      },
+    },
+  ],
 }
