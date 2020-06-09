@@ -6,6 +6,8 @@
 
 module.exports = {
   plugins: [
+    `gatsby-plugin-sass`,
+    `gatsby-plugin-eslint`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -13,6 +15,5 @@ module.exports = {
         icon: `src/images/favicon.png`,
       },
     },
-    `gatsby-plugin-sass`
   ],
 }
