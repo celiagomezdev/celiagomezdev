@@ -1,3 +1,8 @@
 @import "breakpoints";
-@import "grid"
+@import "grid";
 
+* {
+  box-sizing: border-box;
+  position: relative;
+  font-size: 30px;
+}
