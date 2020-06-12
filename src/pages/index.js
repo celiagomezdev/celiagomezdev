@@ -1,12 +1,12 @@
 import React from "react"
-import About from "../components/about"
+import Section from "../components/section"
 import "../assets/style/main.scss"
 
 export default function Home() {
   return (
     <div>
       <div className="grid main">
-        <About />
+        <Section />
       </div>
     </div>
   )
