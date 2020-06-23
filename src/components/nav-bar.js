@@ -1,0 +1,17 @@
+import React from "react"
+import styles from "./nav-bar.module.scss"
+import { Link } from "gatsby"
+
+export default function NavBar() {
+  return (
+    <header id={styles.navBar} className="content">
+      <h3 className={styles.logo}>
+        <Link to="/">celia gómez de villavedón pedrosa</Link>
+      </h3>
+      <ul className={styles.menu}>
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="#about">About</Link></li>
+      </ul>
+    </header>
+  )
+}
