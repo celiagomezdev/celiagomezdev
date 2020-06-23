@@ -3,7 +3,7 @@ import styles from "./about.module.scss"
 
 export default function About() {
   return (
-    <section id="about" className="content" >
+    <section id="about" className="content">
       <div className="grid">
         <div className={styles.description}>
           <h1>About</h1>
