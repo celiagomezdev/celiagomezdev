@@ -1,8 +1,11 @@
 import React from "react"
-import "../assets/style/main.scss"
+import { Link } from "gatsby"
 
-export default function ErrorPage() {
+export default function NotFoundPage() {
   return (
-    <div className="error-page">There was an error loading this page. Try again.</div>
+    <main id="not-found-page">
+      <p>404  - Page not found. Please try again.</p>
+      <div><Link style={{ textDecoration : "none", color: "inherit", fontWeight: "bold" }} to="/">Go to Homepage</Link></div>
+    </main>
   )
 }
