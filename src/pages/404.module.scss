@@ -1,0 +1,19 @@
+.not-found-image {
+  grid-column: 1/13;
+  justify-self: center;
+  background-color: yellowgreen;
+  height: 300px;
+  width: 700px;
+  margin-top: 30px;
+}
+
+.description {
+  grid-column: 1/13;
+  text-align: center;
+}
+
+.description a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
