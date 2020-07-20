@@ -3,6 +3,13 @@
 }
 
 .digital-art {
-  background-color: coral;
   grid-column: 7/13;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.digital-art img {
+  width: 80%;
+  height: 80%;
 }

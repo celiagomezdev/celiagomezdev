@@ -13,7 +13,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `celiagomezdev`,
-        icon: `src/images/favicon.png`,
+        icon: `src/static/img/favicon.png`,
       },
     },
   ],
