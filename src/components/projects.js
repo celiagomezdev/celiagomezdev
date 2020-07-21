@@ -9,7 +9,7 @@ export default function Projects() {
         <div className={styles.digitalArt}>
           <img src={MobileDevelopmentImg} alt="Mobile Development" />
         </div>
-        <div className= {`main-section-copy right ${styles.sectionCopy}`}>
+        <div className= {`main-section-copy ${styles.sectionCopy}`}>
           <h1 className="section-headline">Projects</h1>
           <p className="section-intro">Rings of Uranus how far away culture birth colonies rogue. Are creatures of the cosmos decipherment a very small stage in a vast cosmic arena invent the universe descended from astronomers made in the interiors of collapsing stars. Concept of the number one bits of moving fluff Apollonius of Perga network of wormholes white dwarf bits of moving fluff.</p>
         </div>

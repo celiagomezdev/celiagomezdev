@@ -12,18 +12,34 @@ body {
   margin: 0;
 }
 
-.content {
-  margin: 0 2.5rem;
+@include desktop-xl {
+  .content {
+    margin: 0 auto;
+    width: 1140px;
+  }
+}
+
+@include desktop {
+  .content {
+    margin: 0 auto;
+    width: 980px;
+  }
+}
+
+@include mobile {
+  .content {
+    margin: 0 25px;
+    width: auto;
+  }
+}
+
+@include tablet {
+  .content {
+    margin: 0 40px;
+    width: auto;
+  }
 }
 
 .main-section-copy {
-  padding: 6rem 0 6rem 3rem;
-}
-
-.main-section-copy.center {
-  padding: 6rem 1.5rem 6rem 1.5rem;
-}
-
-.main-section-copy.right {
-  padding: 6rem 3rem 6rem 0;
+  padding: 6rem 0 6rem 0;
 }
