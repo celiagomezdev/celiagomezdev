@@ -3,13 +3,14 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 1.2rem;
+  padding-bottom: 1.5rem;
 }
 
-// .info {
-//   background-color: yellow;
-// }
+.social-media {
+  display: inline-flex;
+}
 
-// .social-media {
-//   background-color: blue;
-// }
+.social-media img {
+  margin-left: 1rem;
+  width: 1rem;
+}
