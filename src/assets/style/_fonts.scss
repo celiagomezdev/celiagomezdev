@@ -1,63 +1,54 @@
 @font-face {
+  font-family: 'WorkSans';
+  src: url('../fonts/WorkSans-VariableFont_wght.woff2') format('woff2');
+  font-weight: 1 999;
+  font-style: normal;
+}
+
+@font-face {
   font-display: swap;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto';
   font-weight: 100;
   font-style: normal;
-  src: url('../fonts/RobotoSlab-Thin.woff2') format('woff2');
+  src: url('../fonts/Roboto-Thin.woff2') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Roboto Slab';
-  font-weight: 200;
-  font-style: normal;
-  src: url('../fonts/RobotoSlab-ExtraLight.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto';
   font-weight: 300;
   font-style: normal;
-  src: url('../fonts/RobotoSlab-Light.woff2') format('woff2');
+  src: url('../fonts/Roboto-Light.woff2') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto';
   font-weight: 400;
   font-style: normal;
-  src: url('../fonts/RobotoSlab-Regular.woff2') format('woff2');
+  src: url('../fonts/Roboto-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto';
   font-weight: 500;
   font-style: normal;
-  src: url('../fonts/RobotoSlab-Medium.woff2') format('woff2');
+  src: url('../fonts/Roboto-Medium.woff2') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Roboto Slab';
-  font-weight: 600;
-  font-style: normal;
-  src: url('../fonts/RobotoSlab-SemiBold.woff2') format('woff2');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto';
   font-weight: 700;
   font-style: normal;
-  src: url('../fonts/RobotoSlab-Bold.woff2') format('woff2');
+  src: url('../fonts/Roboto-Bold.woff2') format('woff2');
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'Roboto Slab';
-  font-weight: 800;
+  font-family: 'Roboto';
+  font-weight: 900;
   font-style: normal;
-  src: url('../fonts/RobotoSlab-ExtraBold.woff2') format('woff2');
+  src: url('../fonts/Roboto-Black.woff2') format('woff2');
 }
