@@ -1,0 +1,20 @@
+section {
+  position: relative;
+}
+
+.hero-bg-image {
+  height: auto;
+  width: 100%;
+}
+
+.hero-title-container {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100%;
+  align-content: center;
+}
+
+.hero-title {
+  grid-column: 1/5;
+  font-size: 4rem;
+}
