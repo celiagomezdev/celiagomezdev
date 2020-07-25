@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 
 export default function NavBar() {
   return (
-    <header id={styles.navBar} className="content">
+    <header id={styles.navBar} className="outer-content">
       <h3 className={styles.logo}>
         <Link to="/">celia gómez de villavedón pedrosa</Link>
       </h3>

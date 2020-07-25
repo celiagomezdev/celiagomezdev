@@ -12,11 +12,14 @@ body {
   margin: 0;
 }
 
-@include desktop-xl {
-  .content {
-    margin: 0 auto;
-    width: 1140px;
-  }
+.outer-content {
+  padding: 0 40px;
+  width: auto;
+}
+
+.content {
+  margin: 0 auto;
+  width: 1140px;
 }
 
 @include desktop {
@@ -26,16 +29,26 @@ body {
   }
 }
 
+@include tablet {
+  .content {
+    margin: 0 40px;
+    width: auto;
+  }
+
+  .outer-content {
+  padding: 0 30px;
+  width: auto;
+  }
+}
+
 @include mobile {
   .content {
     margin: 0 25px;
     width: auto;
   }
-}
 
-@include tablet {
-  .content {
-    margin: 0 40px;
+  .outer-content {
+    padding: 0 20px;
     width: auto;
   }
 }
