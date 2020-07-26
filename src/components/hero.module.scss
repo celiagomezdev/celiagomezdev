@@ -1,20 +1,28 @@
-section {
-  position: relative;
+#hero {
+  margin-top: 3rem;
 }
 
-.hero-bg-image {
-  height: auto;
+.hero-title-card {
+  align-self: center;
+  grid-column: 1/6;
+  border: 0.5rem solid pink;
+  border-radius: 0.5rem;
+}
+
+.hero-title-card h1 {
+  text-align: center;
+  padding: 4rem;
+  font-size: 2.5rem;
+  margin: 0em;
+}
+
+.hero-image {
+  grid-column: 7/13;
   width: 100%;
 }
 
-.hero-title-container {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 100%;
-  align-content: center;
-}
-
-.hero-title {
-  grid-column: 1/5;
-  font-size: 4rem;
+.floor {
+  height: 1rem;
+  width: 100%;
+  background-color: #F6D8C7;
 }
