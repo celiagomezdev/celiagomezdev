@@ -1,14 +1,17 @@
 import React from "react"
 import styles from "./hero.module.scss"
-import HeroBackgroundImg from "../static/img/background-home.png"
+import HeroHomeImg from "../static/img/home.png"
 
 export default function Hero() {
   return (
-    <section id="hero">
-      <img src={HeroBackgroundImg} className={styles.heroBgImage} alt="Hero Background"/>
-      <div className={`content grid ${styles.heroTitleContainer}`}>
-        <h1 className={styles.heroTitle}>HELLO THERE</h1>
+    <section id={styles.hero}>
+      <div className={`content grid`}>
+        <div className={styles.heroTitleCard}>
+          <h1>HELLO THERE!</h1>
+        </div>
+        <img src={HeroHomeImg} className={styles.heroImage} alt="Hero Home"/>
       </div>
+      <div className={styles.floor}></div>
     </section>
   )
 }
