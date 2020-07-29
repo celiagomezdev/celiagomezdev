@@ -1,21 +1,16 @@
 html, body {
   color: black;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Yantramanav', sans-serif;
   line-height: 1.5;
 }
 
-h1, header {
-  font-family: 'WorkSans', sans-serif;
-}
-
 h1 {
-  margin: 0 0 1.2rem;
-  font-weight: 900;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 p {
-  margin: 0 0 1.2rem;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .small-text {
@@ -24,11 +19,13 @@ p {
 }
 
 .section-headline {
-  font-size: 3rem;
+  margin: 0 0 1.5rem;
+  font-size: 2.5rem;
 }
 
 .section-intro {
-  font-size: 1.25rem;
+  margin: 0 0 1.2rem;
+  font-size: 1.3rem;
 }
 
 .main-section-copy.center {
