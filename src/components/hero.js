@@ -6,10 +6,14 @@ export default function Hero() {
   return (
     <section id={styles.hero}>
       <div className={`content grid`}>
-        <div className={styles.heroTitleCard}>
-          <h1>HELLO THERE!</h1>
+        <div className={styles.heroLeftBox}>
+          <div className={styles.heroTitle}>
+            <h1>Hello there!</h1>
+          </div>
+          <div className={styles.celia}>
+          </div>
         </div>
-        <img src={HeroHomeImg} className={styles.heroImage} alt="Hero Home"/>
+        <img src={HeroHomeImg} className={styles.heroHomeImage} alt="Hero Home"/>
       </div>
       <div className={styles.floor}></div>
     </section>

@@ -1,22 +1,30 @@
 #hero {
+  margin-top: 6rem;
+}
+
+.hero-left-box {
+  grid-column: 1/7;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero-title h1 {
+  font-family: 'Sixtyfour', sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
   margin-top: 3rem;
+  color: var(--blue);
 }
 
-.hero-title-card {
-  align-self: center;
-  grid-column: 1/6;
-  border: 0.5rem solid var(--blue);
-  border-radius: 0.5rem;
+.celia {
+  height: 10rem;
+  width: 8rem;
+  background-color: var(--pink);
 }
 
-.hero-title-card h1 {
-  text-align: center;
-  padding: 4rem;
-  font-size: 2.5rem;
-  margin: 0em;
-}
-
-.hero-image {
+.hero-home-image {
   grid-column: 7/13;
   width: 100%;
 }
