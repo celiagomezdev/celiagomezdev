@@ -1,16 +1,18 @@
 import React from "react"
 import styles from "./hero.module.scss"
-import HeroHomeImg from "../static/img/home.png"
+import HeroHomeImg from "../static/img/home.svg"
 
 export default function Hero() {
   return (
     <section id={styles.hero}>
       <div className={`content grid`}>
-        <div className={styles.heroLeftBox}>
-          <div className={styles.heroTitle}>
-            <h1>Hello there!</h1>
-          </div>
-          <div className={styles.celia}>
+        <div className={styles.heroLeftBoxWrapper}>
+          <div className={styles.heroLeftBox}>
+            <div className={styles.heroTitle}>
+              <h1>Hello there!</h1>
+            </div>
+            <div className={styles.celia}>
+            </div>
           </div>
         </div>
         <img src={HeroHomeImg} className={styles.heroHomeImage} alt="Hero Home"/>

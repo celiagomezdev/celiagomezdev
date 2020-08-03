@@ -2,8 +2,13 @@
   margin-top: 6rem;
 }
 
-.hero-left-box {
+.hero-left-box-wrapper {
   grid-column: 1/7;
+  display: flex;
+}
+
+.hero-left-box {
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -13,7 +18,7 @@
 .hero-title h1 {
   font-family: 'Sixtyfour', sans-serif;
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-top: 3rem;
   color: var(--blue);
 }
@@ -27,6 +32,7 @@
 .hero-home-image {
   grid-column: 7/13;
   width: 100%;
+  margin-bottom: -0.1rem;
 }
 
 .floor {
