@@ -1,18 +1,14 @@
 import React from "react"
-import About from "../components/about"
-import Projects from "../components/projects"
-import Skills from "../components/skills"
-import Inspiration from "../components/inspiration"
 import Hero from "../components/hero"
+import MiddleSection from "../components/middle-section"
+import Contact from "../components/contact"
 
 export default function HomePage() {
   return (
     <main id="home-page">
       <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Inspiration />
+      <MiddleSection />
+      <Contact />
     </main>
   )
 }
