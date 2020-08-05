@@ -1,6 +1,19 @@
 #middle-section {
-  height: 30rem;
   width: 100%;
   background-color: var(--blue);
   background-image: linear-gradient(var(--blue), var(--pink));
+}
+
+.carousel-wrapper {
+  height: 25rem;
+  grid-column: 1/7;
+  border: 0.2rem solid blue;
+  margin: 10rem 0;
+}
+
+.text-wrapper {
+  height: auto;
+  grid-column: 7/13;
+  border: 0.2rem solid pink;
+  margin: 10rem 0;
 }
