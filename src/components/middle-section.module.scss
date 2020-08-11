@@ -5,14 +5,12 @@
 }
 
 .carousel-wrapper {
-  height: 25rem;
   grid-column: 1/7;
-  border: 0.2rem solid blue;
-  margin: 10rem 0;
+  margin: 10rem 0 7rem;
 }
 
 .text-wrapper {
-  height: auto;
+  height: 25rem;
   grid-column: 7/13;
   border: 0.2rem solid pink;
   margin: 10rem 0;
