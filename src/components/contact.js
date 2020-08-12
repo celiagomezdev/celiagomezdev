@@ -6,8 +6,12 @@ export default function Contact() {
     <section id={styles.contact} className="content">
       <div className="grid">
         <div className= {`main-section-copy ${styles.sectionCopy}`}>
-          <h1 className="section-headline">Get in touch</h1>
-          <p className="section-intro">Thanks for passing by! Please don’t hesitate to contact me if you have any question or you would like to work on some project together: celiagomezdev@gmail.com.</p>
+          <h1>Get in touch</h1>
+          <p className="section-intro">Drop me a line if you have any questions or you would like to work on some project together. It would be great to hear about you! <a href="mailto:celiagomezdev@gmail.com">celiagomezdev@gmail.com</a>.
+          <br/><br/>
+          You can also check my <a href="https://github.com/celiagomezdev" target="_blank" rel="noreferrer">github</a>, <a href="https://www.linkedin.com/in/celiagomezdev/?locale=en_US" target="_blank" rel="noreferrer">linkedin</a> or <a href="https://www.instagram.com/celiagomezdev" target="_blank" rel="noreferrer">instagram</a> (personal analog pictures) to know a little bit more about me.
+          <br/><br/>
+          See you soon! 🙋🏻‍♀️</p>
         </div>
         <div className={styles.digitalArt}>
           <div className={styles.placeholder}></div>
