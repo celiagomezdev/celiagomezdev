@@ -14,15 +14,16 @@
 .hero-title {
   grid-column: 3/11;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .hero-title h1 {
   font-family: 'Sixtyfour', sans-serif;
   font-weight: 450;
-  font-size: 2.8rem;
-  color: var(--pink);
+  font-size: 2.5rem;
+  color: var(--blue);
+  margin: 0;
+  background-color: var(--coral);
 }
 
 .celia-wrapper {
@@ -32,8 +33,12 @@
   align-items: flex-end;
 }
 
-.celia {
-  height: 12rem;
-  width: 9rem;
-  background-color: var(--pink);
+.celia-wrapper img {
+  height: 75%;
+}
+
+.floor {
+  height: 1rem;
+  width: 100%;
+  background-color: var(--coral);
 }
