@@ -1,42 +1,39 @@
 #hero {
-  margin-top: 6rem;
+  margin-top: 7rem;
+  background-image: url("../static/img/home.svg");
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-position: center bottom;
+  height: 35rem;
 }
 
-.hero-left-box-wrapper {
-  grid-column: 1/7;
-  display: flex;
-}
-
-.hero-left-box {
+.hero-content {
   height: 100%;
+}
+
+.hero-title {
+  grid-column: 3/11;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .hero-title h1 {
   font-family: 'Sixtyfour', sans-serif;
-  font-weight: 400;
-  font-size: 2.5rem;
-  margin-top: 3rem;
-  color: var(--blue);
+  font-weight: 450;
+  font-size: 2.8rem;
+  color: var(--pink);
+}
+
+.celia-wrapper {
+  grid-column: 1/7;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .celia {
-  height: 10rem;
-  width: 8rem;
+  height: 12rem;
+  width: 9rem;
   background-color: var(--pink);
-}
-
-.hero-home-image {
-  grid-column: 7/13;
-  width: 100%;
-  margin-bottom: -0.1rem;
-}
-
-.floor {
-  height: 1rem;
-  width: 100%;
-  background-color: var(--flesh);
 }
