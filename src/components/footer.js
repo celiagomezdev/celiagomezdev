@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer className="outer-content">
       <div className={styles.info}>
-        <p className="small-text">Celia Gómez de Villavedón Pedrosa © 2020 ~ Illustrations by Katerina Limpitsouni <a href="https://undraw.co/" target="_blank" rel="noreferrer">undraw.co</a></p>
+        <p className="small-text">Celia Gómez de Villavedón Pedrosa © 2020 </p>
       </div>
       <div className={styles.socialMedia}>
         <div className={styles.icon}>

@@ -2,6 +2,19 @@
   grid-column: 1/7;
 }
 
+.section-copy h1 {
+  font-family: 'Sixtyfour', sans-serif;
+  font-weight: 450;
+  font-size: 2.5rem;
+  color: var(--blue);
+}
+
+:global(.section-intro) a {
+  text-decoration: none;
+  font-weight: bold;
+  color: inherit;
+}
+
 .digital-art {
   grid-column: 7/13;
   display: flex;
