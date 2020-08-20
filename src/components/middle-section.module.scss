@@ -12,6 +12,7 @@
 .text-wrapper {
   height: 25rem;
   grid-column: 7/13;
-  border: 0.2rem solid pink;
   margin: 10rem 0;
+  display: flex;
+  align-items: center;
 }

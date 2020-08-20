@@ -1,6 +1,7 @@
 import React from "react"
 import styles from "./middle-section.module.scss"
 import Carousel from "./carousel"
+import TextBox from "./text-box"
 
 export default function MiddleSection() {
   return (
@@ -9,7 +10,9 @@ export default function MiddleSection() {
         <div className={styles.carouselWrapper}>
           <Carousel />
         </div>
-        <div className={styles.textWrapper}></div>
+        <div className={styles.textWrapper}>
+          <TextBox />
+        </div>
       </div>
     </section>
   )
