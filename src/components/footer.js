@@ -10,7 +10,9 @@ export default function Footer() {
   return (
     <footer className="outer-content">
       <div className={styles.info}>
-        <p className="small-text">Celia Gómez de Villavedón Pedrosa © 2020 </p>
+        <p className={styles.signature}>
+          Celia Gómez de Villavedón Pedrosa © 2020
+        </p>
       </div>
       <div className={styles.socialMedia}>
         <div className={styles.icon}>
@@ -19,22 +21,38 @@ export default function Footer() {
           </a>
         </div>
         <div className={styles.icon}>
-          <a href="https://github.com/celiagomezdev" target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/celiagomezdev"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src={GithubIcon} alt="Github Icon" />
           </a>
         </div>
         <div className={styles.icon}>
-          <a href="https://www.linkedin.com/in/celiagomezdev/?locale=en_US" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.linkedin.com/in/celiagomezdev/?locale=en_US"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src={LinkedinIcon} alt="Linkedin Icon" />
           </a>
         </div>
         <div className={styles.icon}>
-          <a href="https://twitter.com/celiagomezdev" target="_blank" rel="noreferrer">
+          <a
+            href="https://twitter.com/celiagomezdev"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src={TwitterIcon} alt="Twitter Icon" />
           </a>
         </div>
         <div className={styles.icon}>
-          <a href="https://www.instagram.com/celiagomezdev" target="_blank" rel="noreferrer">
+          <a
+            href="https://www.instagram.com/celiagomezdev"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src={InstagramIcon} alt="Instagram Icon" />
           </a>
         </div>

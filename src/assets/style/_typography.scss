@@ -1,37 +1,26 @@
-html, body {
+html,
+body {
   color: var(--dark);
-  font-family: 'Yantramanav', sans-serif;
+  font-family: "Yantramanav", sans-serif;
   line-height: 1.5;
 }
 
 h1 {
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-p {
-  font-weight: 400;
-}
-
-.small-text {
-  font-size: 0.8rem;
-  margin: 0;
-}
-
-.section-headline {
   margin: 0 0 1.5rem;
+  font-family: "Sixtyfour", sans-serif;
+  font-weight: 450;
+  line-height: 1.2;
   font-size: 2.5rem;
 }
 
-.section-intro {
-  margin: 0 0 1.2rem;
+p {
+  margin: 0;
+  font-weight: 400;
   font-size: 1.3rem;
 }
 
-.main-section-copy.center {
-  text-align: center;
-}
-
-.main-section-copy.right {
-  text-align: right;
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: inherit;
 }

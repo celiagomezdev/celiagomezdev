@@ -9,8 +9,8 @@ export default function TextBox() {
 
   return (
     <div id={styles.textBox}>
-      <h1 className="section-headline">{TextContent(activeSlide).title}</h1>
-      <div className="section-intro">
+      <h1>{TextContent(activeSlide).title}</h1>
+      <div className={styles.textContent}>
         {TextContent(activeSlide).description}
       </div>
     </div>
