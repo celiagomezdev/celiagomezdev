@@ -1,14 +1,18 @@
-import React from "react"
+import React, { useContext } from "react"
 import styles from "./text-box.module.scss"
 import TextContent from "./text-content"
+import { Context } from "../context"
 
-export default class TextBox extends React.Component {
-  render() {
-    return(
-      <div id={styles.textBox}>
-        <h1 className="section-headline">{TextContent(0).title}</h1>
-        <p className="section-intro">{TextContent(0).description}</p>
+export default function TextBox() {
+  // Access the activeSlide state value
+  const [{ activeSlide }] = useContext(Context)
+
+  return (
+    <div id={styles.textBox}>
+      <h1 className="section-headline">{TextContent(activeSlide).title}</h1>
+      <div className="section-intro">
+        {TextContent(activeSlide).description}
       </div>
-    )
-  }
+    </div>
+  )
 }

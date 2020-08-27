@@ -1,8 +1,7 @@
-import React from "react"
+import React, { useContext } from "react"
 import classNames from "classnames"
 import styles from "./carousel.module.scss"
 import arrow from "../static/img/arrow.svg"
-import { useContext } from "react"
 import { Context } from "../context"
 
 export default function Carousel() {
