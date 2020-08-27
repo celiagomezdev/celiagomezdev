@@ -9,8 +9,13 @@ export default function NotFoundPage() {
         <div className={styles.notFoundImage}></div>
         <div className={styles.description}>
           <h1>Oh no!</h1>
-          <p>It seems that the page you are trying to reach doesn't exist or is not available. Please try again :)</p>
-          <div><Link to="/">Go to Homepage</Link></div>
+          <p>
+            It seems that the page you are trying to reach doesn't exist or is
+            not available. Please try again :)
+          </p>
+          <div>
+            <Link to="/">Go to Homepage</Link>
+          </div>
         </div>
       </div>
     </main>
