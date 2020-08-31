@@ -6,7 +6,7 @@
 
 .carousel-wrapper {
   grid-column: 1/7;
-  margin: 10rem 0 7rem;
+  z-index: var(--slide);
 }
 
 .text-wrapper {
