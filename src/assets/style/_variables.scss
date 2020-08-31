@@ -1,9 +1,14 @@
-// colors
 :root {
+  // colors
   --white: #fff;
   --dark: #262132;
   --grey: #A09BAB;
   --pink: #E995D2;
-  --coral: lightpink;
+  --coral: #ffb6c1;
   --blue: #356EC2;
+
+  // z-indexes
+  --floor: 1000;
+  --slide: 2000;
+  --arrow: 3000;
 }
