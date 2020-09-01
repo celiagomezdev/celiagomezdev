@@ -82,6 +82,10 @@ export default function TextContent(position) {
               Zeplin, Figma, Jira, Asana.
             </li>
           </ul>
+          <p>In addition, I count with other skills coming from my 7 years of 
+            experience in Marketing, Advertising and Photography, like for example organisation and communication skills, customer knowdledge, creativity, empathy, team-work,  
+            or attention to detail.
+          </p>
         </Fragment>
       ),
     },

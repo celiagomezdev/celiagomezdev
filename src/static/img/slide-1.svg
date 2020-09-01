@@ -5,17 +5,17 @@
 <g id="window">
 <g id="Rectangle 42">
 <mask id="path-3-inside-1" fill="white">
-<path d="M11 208C11 199.716 17.7157 193 26 193H335C343.284 193 350 199.716 350 208V461.664C350 464.978 347.314 467.664 344 467.664H12C11.4477 467.664 11 467.217 11 466.664V208Z"/>
+<path d="M78 113C78 104.716 84.7157 98 93 98H337C345.284 98 352 104.716 352 113V314C352 317.314 349.314 320 346 320H79C78.4477 320 78 319.552 78 319V113Z"/>
 </mask>
-<path d="M11 208C11 199.716 17.7157 193 26 193H335C343.284 193 350 199.716 350 208V461.664C350 464.978 347.314 467.664 344 467.664H12C11.4477 467.664 11 467.217 11 466.664V208Z" fill="white" stroke="#4296A9" stroke-width="10" mask="url(#path-3-inside-1)"/>
+<path d="M78 113C78 104.716 84.7157 98 93 98H337C345.284 98 352 104.716 352 113V314C352 317.314 349.314 320 346 320H79C78.4477 320 78 319.552 78 319V113Z" fill="white" stroke="#4296A9" stroke-width="10" mask="url(#path-3-inside-1)"/>
 </g>
-<rect id="Rectangle 43" x="28.3213" y="218.982" width="270.953" height="9.89781" fill="#E995D2"/>
-<rect id="Rectangle 45" x="306.697" y="218.982" width="23.5073" height="9.89781" fill="#E995D2"/>
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="28" y="244" width="305" height="207">
-<rect id="Rectangle 44" x="29.8213" y="246.464" width="301.358" height="202.38" fill="white" stroke="#356EC2" stroke-width="3"/>
+<rect id="Rectangle 43" x="92" y="119" width="219" height="8" fill="#E995D2"/>
+<rect id="Rectangle 45" x="317" y="119" width="19" height="8" fill="#E995D2"/>
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="92" y="140" width="246" height="166">
+<rect id="Rectangle 44" x="93.5" y="141.5" width="243" height="163" fill="white" stroke="#356EC2" stroke-width="3"/>
 </mask>
 <g mask="url(#mask0)">
-<rect id="Screenshot 2020-07-27 at 12.02 1" x="1.10229" y="244.964" width="348.898" height="218.989" fill="url(#pattern0)"/>
+<rect id="Screenshot 2020-07-27 at 12.02 1" x="70" y="140" width="282" height="177" fill="url(#pattern0)"/>
 </g>
 </g>
 </g>
