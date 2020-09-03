@@ -1,6 +1,6 @@
 #nav-bar {
   display: flex;
-  z-index: 100;
+  z-index: var(--nav-bar);
   justify-content: space-between;
   align-items: center;
   position: sticky;

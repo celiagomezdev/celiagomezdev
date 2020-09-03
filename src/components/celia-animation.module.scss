@@ -1,0 +1,18 @@
+.celia-container {
+  z-index: var(--celia);
+  position: absolute;
+  top: 18.2rem;
+  left: 38.7rem;
+  overflow: hidden;
+  height: 17rem;
+  width: 13rem;
+}
+
+.celia-container.sticky {
+  position: fixed;
+}
+
+.celia-container img {
+  height: 100%;
+  padding-left: 2.5rem;
+}
