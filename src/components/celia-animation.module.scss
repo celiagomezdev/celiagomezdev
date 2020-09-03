@@ -1,18 +1,28 @@
-.celia-container {
-  z-index: var(--celia);
+#celia-animation {
   position: absolute;
-  top: 18.2rem;
-  left: 38.7rem;
-  overflow: hidden;
+  top: 18rem;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 17rem;
+  z-index: var(--celia);
+  transition: transform 3s;
+  pointer-events: none;
+}
+
+.celia-container {
+  grid-column: 1/7;
+  display: flex;
+  justify-content: center;
+}
+
+.celia {
   height: 17rem;
   width: 13rem;
+  overflow: hidden;
 }
 
-.celia-container.sticky {
-  position: fixed;
-}
-
-.celia-container img {
+.celia img {
   height: 100%;
   padding-left: 2.5rem;
 }
