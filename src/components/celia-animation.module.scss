@@ -1,3 +1,8 @@
+:root {
+  // default
+  --animation-frame-position: 3.8rem;
+}
+
 #celia-animation {
   position: absolute;
   top: 18rem;
@@ -18,11 +23,11 @@
 
 .celia {
   height: 17rem;
-  width: 13rem;
+  width: 15.5rem;
   overflow: hidden;
 }
 
 .celia img {
   height: 100%;
-  padding-left: 2.5rem;
+  margin-left: var(--animation-frame-position);
 }
