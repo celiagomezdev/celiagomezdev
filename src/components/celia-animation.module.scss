@@ -1,0 +1,33 @@
+:root {
+  // default
+  --animation-frame-position: 3.8rem;
+}
+
+#celia-animation {
+  position: absolute;
+  top: 18rem;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 17rem;
+  z-index: var(--celia);
+  transition: transform 3s;
+  pointer-events: none;
+}
+
+.celia-container {
+  grid-column: 1/7;
+  display: flex;
+  justify-content: center;
+}
+
+.celia {
+  height: 17rem;
+  width: 15.5rem;
+  overflow: hidden;
+}
+
+.celia img {
+  height: 100%;
+  margin-left: var(--animation-frame-position);
+}

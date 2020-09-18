@@ -12,25 +12,14 @@
 }
 
 .hero-title {
-  grid-column: 3/11;
-  display: flex;
-  align-items: center;
+  grid-column: 3/9;
+  width: 30rem;
+  top: 2.5rem;
 }
 
 .hero-title h1 {
   color: var(--blue);
   background-color: var(--coral);
-}
-
-.celia-wrapper {
-  grid-column: 1/7;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-
-.celia-wrapper img {
-  height: 75%;
 }
 
 .floor {
