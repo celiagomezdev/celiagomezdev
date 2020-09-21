@@ -7,8 +7,8 @@ export default function CeliaAnimation() {
   const [state, dispatch] = useContext(Context)
   const { celiaAnimationFrame } = state
 
-  const celiaAnimation = React.useRef()
-  const celiaFrames = React.useRef()
+  const celiaAnimationRef = React.useRef()
+  const celiaFramesRef = React.useRef()
   const sayHelloIntervalRef = React.useRef()
   const climbLadderIntervalRef = React.useRef()
 
@@ -27,31 +27,31 @@ export default function CeliaAnimation() {
   // Subscribe to animations effect and update UI
   useEffect(() => {
     const wave = () => {
-      celiaFrames.current.style.setProperty('--animation-frame-position', 
+      celiaFramesRef.current.style.setProperty('--animation-frame-position', 
         `${celiaFramesPosition.frontHello}rem`)
       setTimeout(() => {
-        celiaFrames.current.style.setProperty('--animation-frame-position', 
+        celiaFramesRef.current.style.setProperty('--animation-frame-position', 
         `${celiaFramesPosition.front}rem`)
       }, 1000)
     }
   
     const climb = () => {
-      const currentFrameValue = celiaFrames.current.style.getPropertyValue('--animation-frame-position')
+      const currentFrameValue = celiaFramesRef.current.style.getPropertyValue('--animation-frame-position')
       const setFramePosition = currentFrameValue === `${celiaFramesPosition.backRightSide}rem` ?
         celiaFramesPosition.backLeftSide : celiaFramesPosition.backRightSide
-      celiaFrames.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
+      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
     }
 
-    if (celiaAnimationFrame === "front") celiaFrames.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)
+    if (celiaAnimationFrame === "front") celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)
     else if (celiaAnimationFrame === "hello") {
-      celiaFrames.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)
+      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)
       const helloIntervalId = setInterval(() => wave(), 6000)
       sayHelloIntervalRef.current = helloIntervalId
     } else if (celiaAnimationFrame === "climb") {
       const climbIntervalId = setInterval(() => climb(), 1000)
       climbLadderIntervalRef.current = climbIntervalId
     } else if (celiaAnimationFrame === "back") {
-      celiaFrames.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.backOne}rem`)
+      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.backOne}rem`)
     }
 
     return () => {
@@ -69,12 +69,12 @@ export default function CeliaAnimation() {
   const moveCeliaDownAndUp = (scrollingValue) => {
     // Start movement
     if (scrollingValue > 3 && scrollingValue <= 35)
-      celiaAnimation.current.style.setProperty('transform', `translateY(${scrollingValue}rem)`)
+      celiaAnimationRef.current.style.setProperty('transform', `translateY(${scrollingValue}rem)`)
     // Ending position
     else if (scrollingValue > 35) 
-      celiaAnimation.current.style.setProperty('transform', `translateY(36rem)`)
+      celiaAnimationRef.current.style.setProperty('transform', `translateY(36rem)`)
     // Initial position. Default.
-    else celiaAnimation.current.style.setProperty('transform', `translateY(0rem)`)
+    else celiaAnimationRef.current.style.setProperty('transform', `translateY(0rem)`)
   }
 
   const setCeliaFrame = (scrollingValue) => {
@@ -86,9 +86,9 @@ export default function CeliaAnimation() {
   }
 
   return(
-    <div id={styles.celiaAnimation} className="content grid" ref={celiaAnimation}>
+    <div id={styles.celiaAnimation} className="content grid" ref={celiaAnimationRef}>
       <div className={styles.celiaContainer}>
-        <div className={styles.celia} ref={celiaFrames}>
+        <div className={styles.celia} ref={celiaFramesRef}>
           <img src={celiaFramesImage} alt="Celia Animation"></img>
         </div>
       </div>
