@@ -2,6 +2,7 @@ import React from "react"
 
 const initialState = {
   activeSlide: 0,
+  celiaAnimationFrame: "hello"
 }
 
 const reducer = (state, action) => {
@@ -10,6 +11,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         activeSlide: action.activeSlide,
+      }
+    }
+    case "SET_ANIMATION_FRAME": {
+      return {
+        ...state,
+        celiaAnimationFrame: action.celiaAnimationFrame,
       }
     }
     default: {
