@@ -12,35 +12,39 @@ export default function Carousel() {
   const numberOfSlides = 3
   const slider = React.createRef()
 
-  // Effect for defining celia animation in each slide
+  // Effect for updating the active slide position
   useEffect(() => {
-    switch(activeSlide) {
-      case 1:
-        // When coming from sit position we ensure celia is stand up
-        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
-        setTimeout (() => dispatch(
-          { type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "showing"}), 200)
-        break
-      case 2: 
-        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "typing"})
-        break
-      default: 
-        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"})
-    }
-  }, [activeSlide, dispatch])
-
-  const moveToSlide = position => {
-    // Dispatch setActiveSlide action to update activeSlide state
-    dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: position })
-
     /**
      * Set the position of each slide.
      * We use negative values because we move them to the left.
      */
     const currentSlider = slider.current
     const sliderWidth = parseInt(getComputedStyle(currentSlider).width, 10)
-    const sliderTransformPosition = sliderWidth * position
+    const sliderTransformPosition = sliderWidth * activeSlide
     currentSlider.style.transform = `translateX(-${sliderTransformPosition}px)`
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSlide])
+
+    // Effect for defining celia animation in each slide
+    useEffect(() => {
+      switch(activeSlide) {
+        case 1:
+          // When coming from sit position we ensure celia is stand up
+          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
+          setTimeout (() => dispatch(
+            { type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "showing"}), 200)
+          break
+        case 2: 
+          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "typing"})
+          break
+        default: 
+          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"})
+      }
+    }, [activeSlide, dispatch])
+  
+
+  const moveToSlide = position => {
+    dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: position })
   }
 
   const moveToNext = () => {
