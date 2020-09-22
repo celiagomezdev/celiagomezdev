@@ -11,6 +11,8 @@ export default function CeliaAnimation() {
   const celiaFramesRef = React.useRef()
   const sayHelloIntervalRef = React.useRef()
   const climbLadderIntervalRef = React.useRef()
+  const showIntervalRef = React.useRef()
+  const typeIntervalRef = React.useRef()
 
   const celiaFramesPosition = {
     front: 3.5,
@@ -42,23 +44,57 @@ export default function CeliaAnimation() {
       celiaFramesRef.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
     }
 
-    if (celiaAnimationFrame === "front") celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)
-    else if (celiaAnimationFrame === "hello") {
-      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)
-      const helloIntervalId = setInterval(() => wave(), 6000)
-      sayHelloIntervalRef.current = helloIntervalId
-    } else if (celiaAnimationFrame === "climb") {
-      const climbIntervalId = setInterval(() => climb(), 1000)
-      climbLadderIntervalRef.current = climbIntervalId
-    } else if (celiaAnimationFrame === "back") {
-      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.backOne}rem`)
+    const show = () => {
+      const currentFrameValue = celiaFramesRef.current.style.getPropertyValue('--animation-frame-position')
+      const setFramePosition = currentFrameValue === `${celiaFramesPosition.backTwo}rem` ?
+        celiaFramesPosition.backThree : celiaFramesPosition.backTwo
+      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
+    }
+
+    const type = () => {
+      const currentFrameValue = celiaFramesRef.current.style.getPropertyValue('--animation-frame-position')
+      const setFramePosition = currentFrameValue === `${celiaFramesPosition.sitOne}rem` ?
+        celiaFramesPosition.sitTwo : celiaFramesPosition.sitOne
+      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
+    }
+
+    switch (celiaAnimationFrame) {
+      case "hello": {
+        celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)
+        const helloIntervalId = setInterval(() => wave(), 6000)
+        sayHelloIntervalRef.current = helloIntervalId
+        break
+      }
+      case "climb": {
+        const climbIntervalId = setInterval(() => climb(), 1000)
+        climbLadderIntervalRef.current = climbIntervalId
+        break
+      }
+      case "back": {
+        celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.backOne}rem`)
+        break
+      }
+      case "showing": {
+        const showIntervalId = setInterval(() => show(), 1000)
+        showIntervalRef.current = showIntervalId
+        break
+      }
+      case "typing": {
+        const typeIntervalId = setInterval(() => type(), 500)
+        typeIntervalRef.current = typeIntervalId
+        break
+      }
+      default:
+        celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)    
     }
 
     return () => {
       clearInterval(sayHelloIntervalRef.current)
       clearInterval(climbLadderIntervalRef.current)
+      clearInterval(showIntervalRef.current)
+      clearInterval(typeIntervalRef.current)
     }
-  }, [celiaAnimationFrame, celiaFramesPosition])
+  }, [celiaAnimationFrame, celiaFramesPosition, dispatch])
 
   window.onscroll = () => {
     const scrollingValueWithSensitivity = window.scrollY/8
@@ -68,8 +104,11 @@ export default function CeliaAnimation() {
 
   const moveCeliaDownAndUp = (scrollingValue) => {
     // Start movement
-    if (scrollingValue > 3 && scrollingValue <= 35)
+    if (scrollingValue > 3 && scrollingValue <= 35) {
+      // We ensure that is in first position when scrolling
+      dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 0 })
       celiaAnimationRef.current.style.setProperty('transform', `translateY(${scrollingValue}rem)`)
+    }
     // Ending position
     else if (scrollingValue > 35) 
       celiaAnimationRef.current.style.setProperty('transform', `translateY(36rem)`)
@@ -78,7 +117,6 @@ export default function CeliaAnimation() {
   }
 
   const setCeliaFrame = (scrollingValue) => {
-    
     if (scrollingValue === 0) setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"}), 3000) // Delay for waiting the scroll up
     else if (scrollingValue > 0 && scrollingValue <= 5) dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "back"})
     else if (scrollingValue > 5 && scrollingValue < 35) dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "climb"})

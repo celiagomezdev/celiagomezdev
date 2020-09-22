@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect } from "react"
 import classNames from "classnames"
 import styles from "./carousel.module.scss"
 import arrow from "../static/img/arrow.svg"
@@ -11,6 +11,23 @@ export default function Carousel() {
 
   const numberOfSlides = 3
   const slider = React.createRef()
+
+  // Effect for defining celia animation in each slide
+  useEffect(() => {
+    switch(activeSlide) {
+      case 1:
+        // When coming from sit position we ensure celia is stand up
+        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
+        setTimeout (() => dispatch(
+          { type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "showing"}), 200)
+        break
+      case 2: 
+        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "typing"})
+        break
+      default: 
+        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"})
+    }
+  }, [activeSlide, dispatch])
 
   const moveToSlide = position => {
     // Dispatch setActiveSlide action to update activeSlide state
