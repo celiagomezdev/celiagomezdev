@@ -15,15 +15,15 @@ export default function CeliaAnimation() {
   const typeIntervalRef = React.useRef()
 
   const celiaFramesPosition = {
-    front: 3.5,
-    frontHello: -8.4,
-    backOne: -22,
-    backRightSide: -34.6,
-    backLeftSide: -48,
-    backTwo: -61.2,
-    backThree: -74.3,
-    sitOne: -89.3,
-    sitTwo: -105.6
+    front: 3.8,
+    frontHello: -10.9,
+    backOne: -27.4,
+    backRightSide: -42.5,
+    backLeftSide: -58.7,
+    backTwo: -74.5,
+    backThree: -90.3,
+    sitOne: -109.1,
+    sitTwo: -128
   }
 
   // Subscribe to animations effect and update UI
@@ -61,7 +61,7 @@ export default function CeliaAnimation() {
     switch (celiaAnimationFrame) {
       case "hello": {
         celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)
-        const helloIntervalId = setInterval(() => wave(), 6000)
+        const helloIntervalId = setInterval(() => wave(), 5000)
         sayHelloIntervalRef.current = helloIntervalId
         break
       }
