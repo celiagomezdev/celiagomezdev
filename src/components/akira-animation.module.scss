@@ -1,0 +1,34 @@
+#akira {
+  background-image: url("../static/img/akira.svg");
+  background-repeat: no-repeat;
+  background-size: auto 110%;
+  background-position: center bottom;
+  border: 0.2rem solid var(--blue);
+  width: 25rem;
+  height: 17rem;
+}
+
+.akira-tappable-area {
+  position: absolute;
+  top: 1.5rem;
+  left: 5rem;
+  width: 14rem;
+  height: 12rem;
+}
+
+.eye {
+  left: 3.45rem;
+  width: 7.3rem;
+}
+
+.eye img {
+  width: 7.3rem;
+}
+
+.akira-open-eyes {
+  top: 2.2rem;
+}
+
+.akira-angry-eyes {
+  top: 3rem;
+}
