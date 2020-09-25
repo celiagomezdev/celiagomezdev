@@ -1,5 +1,6 @@
 import React from "react"
 import styles from "./contact.module.scss"
+import AkiraAnimation from "./akira-animation"
 
 export default function Contact() {
   return (
@@ -44,8 +45,8 @@ export default function Contact() {
             See you soon! 🙋🏻‍♀️
           </p>
         </div>
-        <div className={styles.digitalArt}>
-          <div className={styles.placeholder}></div>
+        <div className={styles.imageSection}>
+          <AkiraAnimation />
         </div>
       </div>
     </section>
