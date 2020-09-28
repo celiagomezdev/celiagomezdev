@@ -1,8 +1,12 @@
-import React from "react"
+import React, { useContext } from "react"
 import styles from "./nav-bar.module.scss"
 import { Link } from "gatsby"
+import { Context } from "../context"
 
 export default function NavBar() {
+  // eslint-disable-next-line no-unused-vars
+  const [state, dispatch] = useContext(Context)
+
   return (
     <header id={styles.navBar} className="outer-content">
       <h3 className={styles.logo}>
@@ -13,16 +17,22 @@ export default function NavBar() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/#about">About</Link>
+          <Link to="/#middle-section-module--middle-section--8npu3" 
+          onClick={() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 0 })}
+          >About</Link>
         </li>
         <li>
-          <Link to="/#projects">Projects</Link>
+          <Link to="/#middle-section-module--middle-section--8npu3"
+          onClick={() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 1 })}
+          >Projects</Link>
         </li>
         <li>
-          <Link to="/#skills">Skills</Link>
+          <Link to="/#middle-section-module--middle-section--8npu3"
+          onClick={() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 2 })}
+          >Skills</Link>
         </li>
         <li>
-          <Link to="/#inspiration">Inspiration</Link>
+          <Link to="/#contact">Contact</Link>
         </li>
       </ul>
     </header>
