@@ -4,8 +4,14 @@ import { Link } from "gatsby"
 import { Context } from "../context"
 
 export default function NavBar() {
-  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useContext(Context)
+  const { activeslide, celiaAnimationFrame} = state
+
+  const goToSlide = slide => {
+    if (activeslide === 0 || celiaAnimationFrame !== "hello") dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: slide })
+    // Add timeout for waiting celia to be downstairs before moving to the next slide
+    else setTimeout(() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: slide }), 1500)
+  }
 
   return (
     <header id={styles.navBar} className="outer-content">
@@ -14,21 +20,23 @@ export default function NavBar() {
       </h3>
       <ul className={styles.menu}>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/"
+          onClick={() => goToSlide(0)}
+          >Home</Link>
         </li>
         <li>
           <Link to="/#middle-section-module--middle-section--8npu3" 
-          onClick={() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 0 })}
+          onClick={() => goToSlide(0)}
           >About</Link>
         </li>
         <li>
           <Link to="/#middle-section-module--middle-section--8npu3"
-          onClick={() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 1 })}
+          onClick={() => goToSlide(1)}
           >Projects</Link>
         </li>
         <li>
           <Link to="/#middle-section-module--middle-section--8npu3"
-          onClick={() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 2 })}
+          onClick={() => goToSlide(2)}
           >Skills</Link>
         </li>
         <li>

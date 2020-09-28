@@ -28,6 +28,9 @@ export default function Carousel() {
     // Effect for defining celia animation in each slide
     useEffect(() => {
       switch(activeSlide) {
+        case 0:
+          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"})
+          break
         case 1:
           // When coming from sit position we ensure celia is stand up
           dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
@@ -38,7 +41,7 @@ export default function Carousel() {
           dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "typing"})
           break
         default: 
-          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"})
+          console.log("Unknown active slide value: ", activeSlide)
       }
     }, [activeSlide, dispatch])
   

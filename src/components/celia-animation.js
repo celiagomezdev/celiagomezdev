@@ -117,10 +117,12 @@ export default function CeliaAnimation() {
   }
 
   const setCeliaFrame = (scrollingValue) => {
-    if (scrollingValue === 0) setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"}), 3000) // Delay for waiting the scroll up
+    // When scrolling fast, we add a delay to make sure that celia is upstairs before setting the state
+    if (scrollingValue === 0) setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"}), 3000) 
     else if (scrollingValue > 0 && scrollingValue <= 5) dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "back"})
     else if (scrollingValue > 5 && scrollingValue < 35) dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "climb"})
-    else if (scrollingValue > 35) setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"}), 3000) // Delay for waiting the scroll down
+    // When scrolling fast, we add a delay to make sure that celia is dowsntairs before setting the state
+    else if (scrollingValue > 35 && scrollingValue < 36) setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"}), 3000)
   }
 
   return(
