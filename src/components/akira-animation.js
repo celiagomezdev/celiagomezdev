@@ -8,14 +8,19 @@ export default function AkiraAnimation() {
   const [angryEyesAreShown, setAngryEyesAreShown] = useState(false)
 
   const handleClick = () => {
-    setAngryEyesAreShown(!angryEyesAreShown)
+    setAngryEyesAreShown(true)
     setOpenEyesAreShown(false)
+    setTimeout(() => setAngryEyesAreShown(false), 2000)
+  }
+
+  const handleMouseEnter = () => {
+    if (!angryEyesAreShown) setOpenEyesAreShown(true)
   }
 
   return (
     <div id={styles.akira}>
       <div className={styles.akiraTappableArea} 
-        onMouseEnter={() => setOpenEyesAreShown(true)}
+        onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => setOpenEyesAreShown(false)}
         onClick={()=> handleClick()}>
         {openEyesAreShown && (
