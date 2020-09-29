@@ -1,3 +1,5 @@
+@import "../assets/style/breakpoints";
+
 #hero {
   margin-top: 7rem;
   background-image: url("../static/img/home.svg");
@@ -27,4 +29,38 @@
   width: 100%;
   background-color: var(--coral);
   z-index: var(--floor);
+}
+
+@include tablet {
+  #hero {
+    margin-top: -2rem;
+    background-size: auto 80%;
+  }
+
+  .hero-title {
+    grid-column: 2/5;
+    width: 24rem;
+    top: 8.5rem;
+  }
+
+  .hero-title h1 {
+    font-size: 2rem;
+  }
+}
+
+@include mobile {
+  #hero {
+    margin-top: -9rem;
+    background-size: auto 60%;
+  }
+
+  .hero-title {
+    grid-column: 1/2;
+    width: 22rem;
+    top: 13rem;
+  }
+
+  .hero-title h1 {
+    font-size: 1.7rem;
+  }
 }
