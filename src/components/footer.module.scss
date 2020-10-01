@@ -1,9 +1,10 @@
+@import "../assets/style/breakpoints";
+
 footer {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: var(--blue);
   color: var(--white);
+  grid-column: 1/13;
 }
 
 footer a {
@@ -12,9 +13,18 @@ footer a {
   color: inherit;
 }
 
+.info {
+  grid-column: 1/6;
+}
+
 .signature {
   font-size: 0.8rem;
   margin: 0;
+}
+
+.social-media {
+  justify-self: end;
+  grid-column: 8/13;
 }
 
 .icon {
@@ -34,4 +44,24 @@ footer a {
 
 .social-media img {
   width: 1rem;
+}
+
+@include tablet {
+  .info {
+    grid-column: 1/4;
+  }
+
+  .social-media {
+    grid-column: 4/7;
+  }
+}
+
+@include mobile {
+  .info {
+    grid-column: 1/2;
+  }
+
+  .social-media {
+    grid-column: 2/3;
+  }
 }
