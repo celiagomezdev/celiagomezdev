@@ -14,7 +14,7 @@ export default function NavBar() {
   }
 
   return (
-    <header id={styles.navBar} className="outer-content">
+    <header id={styles.navBar} className={`outer-content grid`}>
       <h3 className={styles.logo}>
         <Link to="/">celia gómez de villavedón pedrosa</Link>
       </h3>
