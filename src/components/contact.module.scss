@@ -1,3 +1,5 @@
+@import "../assets/style/breakpoints";
+
 .section-copy {
   grid-column: 1/7;
 }
@@ -11,4 +13,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@include tablet {
+  .section-copy {
+    grid-column: 1/6;
+  }
+
+  .image-section {
+    grid-column: 1/6;
+  }
+}
+
+@include mobile {
+  .section-copy {
+    grid-column: 1/2;
+  }
+
+  .image-section {
+    grid-column: 1/2;
+  }
 }
