@@ -1,3 +1,5 @@
+@import "../assets/style/breakpoints";
+
 #text-box {
   color: var(--white);
 }
@@ -15,4 +17,14 @@
   text-decoration: none;
   font-weight: bold;
   color: inherit;
+}
+
+@include mobile {
+  #text-box h1 {
+    font-size: 2rem;
+  }
+
+  .text-content {
+    font-size: 1rem;
+  }
 }

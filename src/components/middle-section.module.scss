@@ -13,7 +13,7 @@
 }
 
 .text-wrapper {
-  height: 25rem;
+  height: 100%;
   grid-column: 7/13;
   margin: 10rem 0;
   display: flex;
@@ -37,6 +37,7 @@
   }
 
   .text-wrapper {
+    margin: 1rem 0 3rem;
     grid-column: 1/3;
   }
 }
