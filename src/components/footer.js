@@ -8,7 +8,7 @@ import InstagramIcon from "../static/img/instagram_icon.svg"
 
 export default function Footer() {
   return (
-    <footer className="outer-content">
+    <footer className={`outer-content grid`}>
       <div className={styles.info}>
         <p className={styles.signature}>
           Celia Gómez de Villavedón Pedrosa © 2020
