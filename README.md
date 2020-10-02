@@ -1,5 +1,7 @@
 # celiagomezdev
-Personal website built with Gatsby.
+> 🚧 Bear with me! this website is under construction 🚧
+
+Personal website built with Gatsby. 
 
 ## 🚀 Run it locally
 
