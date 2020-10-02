@@ -7,11 +7,13 @@ export default function TextBox() {
   // Access the activeSlide state value
   const [{ activeSlide }] = useContext(Context)
 
+  const currentSlide = activeSlide == null ? 0 : activeSlide
+
   return (
     <div id={styles.textBox}>
-      <h1>{TextContent(activeSlide).title}</h1>
+      <h1>{TextContent(currentSlide).title}</h1>
       <div className={styles.textContent}>
-        {TextContent(activeSlide).description}
+        {TextContent(currentSlide).description}
       </div>
     </div>
   )

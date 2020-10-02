@@ -29,24 +29,23 @@ export default function Carousel() {
     useEffect(() => {
       switch(activeSlide) {
         case 0:
-          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"})
+          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
           break
         case 1:
-          // When coming from sit position we ensure celia is stand up
-          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
-          setTimeout (() => dispatch(
-            { type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "showing"}), 200)
+          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "showing"})
           break
         case 2: 
           dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "typing"})
           break
-        default: 
-          console.log("Unknown active slide value: ", activeSlide)
+        default:
+          break
       }
     }, [activeSlide, dispatch])
   
 
   const moveToSlide = position => {
+    // Everytime we move to a different slide, Celia is looking upfront
+    dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
     dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: position })
   }
 

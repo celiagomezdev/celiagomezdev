@@ -105,8 +105,6 @@ export default function CeliaAnimation() {
   const moveCeliaDownAndUp = (scrollingValue) => {
     // Start movement
     if (scrollingValue > 3 && scrollingValue <= 35) {
-      // We ensure that is in first position when scrolling
-      dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 0 })
       celiaAnimationRef.current.style.setProperty('transform', `translateY(${scrollingValue}rem)`)
     }
     // Ending position
@@ -118,8 +116,14 @@ export default function CeliaAnimation() {
 
   const setCeliaFrame = (scrollingValue) => {
     // When scrolling fast, we add a delay to make sure that celia is upstairs before setting the state
-    if (scrollingValue === 0) setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"}), 3000) 
-    else if (scrollingValue > 0 && scrollingValue <= 5) dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "back"})
+    if (scrollingValue === 0) {
+      dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: null })
+      setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"}), 3000)
+    }
+    else if (scrollingValue > 0 && scrollingValue <= 5) {
+      dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 0 })
+      dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "back"})
+    }
     else if (scrollingValue > 5 && scrollingValue < 35) dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "climb"})
     // When scrolling fast, we add a delay to make sure that celia is dowsntairs before setting the state
     else if (scrollingValue > 35 && scrollingValue < 36) setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"}), 3000)
