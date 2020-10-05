@@ -6,9 +6,10 @@ export default function TextContent(position) {
       title: "About me",
       description: (
         <Fragment>
+          <p>
           I’m a full stack software engineer living in Berlin since 2013. Three
           years ago, with 7 years of experience as a marketing specialist, I
-          decided to switch careers and become a Software Engineer. <br />
+          decided to switch careers and become a Software Engineer. <br /><br />
           What an{" "}
           <a
             href="https://www.youtube.com/watch?v=UMqg37sPwAA"
@@ -17,15 +18,16 @@ export default function TextContent(position) {
           >
             exciting and challenging journey!{" "}
           </a>
-          <br />
+          <br /><br />
           In 2018, I got a job opportunity at{" "}
           <a href="https://unumotors.com" target="_blank" rel="noreferrer">
             unumotors
           </a>
           , and since then I’ve been learning from that amazing team and
           enjoying creating useful applications, developing features and solving
-          problems. <br />
-          Right now I'm open to new opportunities! Slide right to know more.
+          problems. <br /><br />
+          Right now I'm open to new opportunities! Slide right to know more about me.
+          </p>
         </Fragment>
       ),
     },
@@ -82,10 +84,6 @@ export default function TextContent(position) {
               Zeplin, Figma, Jira, Asana.
             </li>
           </ul>
-          <p>In addition, I count with other skills coming from my 7 years of 
-            experience in Marketing, Advertising and Photography, like for example organisation and communication skills, customer knowdledge, creativity, empathy, team-work,  
-            or attention to detail.
-          </p>
         </Fragment>
       ),
     },
