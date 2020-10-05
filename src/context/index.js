@@ -2,7 +2,7 @@ import React from "react"
 
 // TODO: Create enums for strings
 const initialState = {
-  activeSlide: null,
+  activeSlide: 0,
   celiaAnimationFrame: "hello",
   celiaVerticalPosition: "top",
   animationIsTransitioning: false,
