@@ -5,7 +5,7 @@ import { Context } from "../context"
 
 export default function CeliaAnimation() {
   const [state, dispatch] = useContext(Context)
-  const { celiaAnimationFrame } = state
+  const { celiaAnimationFrame, celiaVerticalPosition, animationIsTransitioning } = state
 
   const celiaAnimationRef = React.useRef()
   const celiaFramesRef = React.useRef()
@@ -13,6 +13,8 @@ export default function CeliaAnimation() {
   const climbLadderIntervalRef = React.useRef()
   const showIntervalRef = React.useRef()
   const typeIntervalRef = React.useRef()
+
+  const previousScroll = window.scrollY
 
   const celiaFramesPosition = {
     front: 3.8,
@@ -26,7 +28,15 @@ export default function CeliaAnimation() {
     sitTwo: -128
   }
 
-  // Subscribe to animations effect and update UI
+  React.useEffect(() => {
+    celiaAnimationRef.current.addEventListener("transitionrun", () => {
+      dispatch({ type: "SET_ANIMATION_IS_TRANSITIONING", animationIsTransitioning: true})
+    })
+    celiaAnimationRef.current.addEventListener("transitionend", () => {
+      dispatch({ type: "SET_ANIMATION_IS_TRANSITIONING", animationIsTransitioning: false})
+    })
+  }, [celiaAnimationRef, dispatch])
+
   useEffect(() => {
     const wave = () => {
       celiaFramesRef.current.style.setProperty('--animation-frame-position', 
@@ -66,7 +76,8 @@ export default function CeliaAnimation() {
         break
       }
       case "climb": {
-        const climbIntervalId = setInterval(() => climb(), 1000)
+        climb()
+        const climbIntervalId = setInterval(() => climb(), 400)
         climbLadderIntervalRef.current = climbIntervalId
         break
       }
@@ -96,37 +107,36 @@ export default function CeliaAnimation() {
     }
   }, [celiaAnimationFrame, celiaFramesPosition, dispatch])
 
+  useEffect(() => {
+    if (animationIsTransitioning) return
+    switch (celiaVerticalPosition) {
+      case "top": {
+        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"})
+        if (window.scrollY === 0) return
+        celiaAnimationRef.current.style.setProperty('transform', `translateY(0rem)`)
+        break
+      }
+      case "bottom": {
+        celiaAnimationRef.current.style.setProperty('transform', `translateY(36rem)`)
+        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
+        break
+      }
+      default:
+        break
+    }
+  }, [animationIsTransitioning, celiaVerticalPosition, dispatch])
+
+  useEffect(() => {
+    if (animationIsTransitioning) dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "climb"})
+  }, [animationIsTransitioning, dispatch])
+
   window.onscroll = () => {
-    const scrollingValueWithSensitivity = window.scrollY/8
-    moveCeliaDownAndUp(scrollingValueWithSensitivity)
-    setCeliaFrame(scrollingValueWithSensitivity)
+    const isGoingDown = previousScroll < window.scrollY
+    animationGoTo(isGoingDown ? "bottom" : "top")
   }
 
-  const moveCeliaDownAndUp = (scrollingValue) => {
-    // Start movement
-    if (scrollingValue > 3 && scrollingValue <= 35) {
-      celiaAnimationRef.current.style.setProperty('transform', `translateY(${scrollingValue}rem)`)
-    }
-    // Ending position
-    else if (scrollingValue > 35) 
-      celiaAnimationRef.current.style.setProperty('transform', `translateY(36rem)`)
-    // Initial position. Default.
-    else celiaAnimationRef.current.style.setProperty('transform', `translateY(0rem)`)
-  }
-
-  const setCeliaFrame = (scrollingValue) => {
-    // When scrolling fast, we add a delay to make sure that celia is upstairs before setting the state
-    if (scrollingValue === 0) {
-      dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: null })
-      setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"}), 3000)
-    }
-    else if (scrollingValue > 0 && scrollingValue <= 5) {
-      dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: 0 })
-      dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "back"})
-    }
-    else if (scrollingValue > 5 && scrollingValue < 35) dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "climb"})
-    // When scrolling fast, we add a delay to make sure that celia is dowsntairs before setting the state
-    else if (scrollingValue > 35 && scrollingValue < 36) setTimeout(() => dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"}), 3000)
+  const animationGoTo = (direction) => {
+    dispatch({ type: "SET_CELIA_VERTICAL_POSITION", celiaVerticalPosition: direction})
   }
 
   return(

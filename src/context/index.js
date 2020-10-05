@@ -1,8 +1,11 @@
 import React from "react"
 
+// TODO: Create enums for strings
 const initialState = {
-  activeSlide: 0,
-  celiaAnimationFrame: "hello"
+  activeSlide: null,
+  celiaAnimationFrame: "hello",
+  celiaVerticalPosition: "top",
+  animationIsTransitioning: false,
 }
 
 const reducer = (state, action) => {
@@ -13,10 +16,22 @@ const reducer = (state, action) => {
         activeSlide: action.activeSlide,
       }
     }
+    case "SET_CELIA_VERTICAL_POSITION": {
+      return {
+        ...state,
+        celiaVerticalPosition: action.celiaVerticalPosition,
+      }
+    }
     case "SET_ANIMATION_FRAME": {
       return {
         ...state,
         celiaAnimationFrame: action.celiaAnimationFrame,
+      }
+    }
+    case "SET_ANIMATION_IS_TRANSITIONING": {
+      return {
+        ...state,
+        animationIsTransitioning: action.animationIsTransitioning,
       }
     }
     default: {
