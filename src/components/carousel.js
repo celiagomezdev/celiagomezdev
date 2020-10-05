@@ -7,7 +7,7 @@ import { Context } from "../context"
 export default function Carousel() {
   // Use Context for accessing the state and actions to dispatch
   const [state, dispatch] = useContext(Context)
-  const { activeSlide } = state
+  const { activeSlide, celiaVerticalPosition } = state
 
   const numberOfSlides = 3
   const slider = React.createRef()
@@ -25,22 +25,22 @@ export default function Carousel() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSlide])
 
-    // Effect for defining celia animation in each slide
-    useEffect(() => {
-      switch(activeSlide) {
-        case 0:
-          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
-          break
-        case 1:
-          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "showing"})
-          break
-        case 2: 
-          dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "typing"})
-          break
-        default:
-          break
-      }
-    }, [activeSlide, dispatch])
+  // Effect for defining celia animation in each slide
+  useEffect(() => {
+    switch(activeSlide) {
+      case 0:
+        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
+        break
+      case 1:
+        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "showing"})
+        break
+      case 2: 
+        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "typing"})
+        break
+      default:
+        break
+    }
+  }, [activeSlide, dispatch])
   
 
   const moveToSlide = position => {
@@ -95,7 +95,7 @@ export default function Carousel() {
   const rightArrowClass = classNames({
     [styles.arrow]: true,
     [styles.right]: true,
-    [styles.hidden]: activeSlide === 2,
+    [styles.hidden]: activeSlide === 2 || celiaVerticalPosition === "top",
   })
 
   return (

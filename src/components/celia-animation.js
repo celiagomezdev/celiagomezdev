@@ -5,7 +5,12 @@ import { Context } from "../context"
 
 export default function CeliaAnimation() {
   const [state, dispatch] = useContext(Context)
-  const { celiaAnimationFrame, celiaVerticalPosition, animationIsTransitioning } = state
+  const { 
+    celiaAnimationFrame, 
+    celiaVerticalPosition, 
+    animationIsTransitioning, 
+    activeSlide
+  } = state
 
   const celiaAnimationRef = React.useRef()
   const celiaFramesRef = React.useRef()
@@ -131,6 +136,7 @@ export default function CeliaAnimation() {
   }, [animationIsTransitioning, dispatch])
 
   window.onscroll = () => {
+    if (activeSlide !== 0) return
     const isGoingDown = previousScroll < window.scrollY
     animationGoTo(isGoingDown ? "bottom" : "top")
   }
