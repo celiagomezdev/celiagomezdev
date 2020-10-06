@@ -140,6 +140,9 @@ export default function CeliaAnimation() {
   }, [animationIsTransitioning, dispatch])
 
   window.onscroll = () => {
+    /* Early return if we are positioned below 
+    the middle section or we are not in the initial slide */
+    if (window.scrollY > 500) return
     if (activeSlide !== 0) return
     const isGoingDown = previousScroll < window.scrollY
     animationGoTo(isGoingDown ? "bottom" : "top")
