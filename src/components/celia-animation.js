@@ -18,6 +18,7 @@ export default function CeliaAnimation() {
   const climbLadderIntervalRef = React.useRef()
   const showIntervalRef = React.useRef()
   const typeIntervalRef = React.useRef()
+  const currentDirection = React.useRef()
 
   const previousScroll = window.scrollY
 
@@ -57,6 +58,13 @@ export default function CeliaAnimation() {
       const setFramePosition = currentFrameValue === `${celiaFramesPosition.backRightSide}rem` ?
         celiaFramesPosition.backLeftSide : celiaFramesPosition.backRightSide
       celiaFramesRef.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
+
+      // celiaFramesRef.current.style.setProperty('--animation-frame-position', 
+      // `${celiaFramesPosition.backLeftSide}rem`)
+      // setTimeout(() => {
+      //   celiaFramesRef.current.style.setProperty('--animation-frame-position', 
+      //   `${celiaFramesPosition.backRightSide}rem`)
+      // }, 1000)
     }
 
     const show = () => {
@@ -132,7 +140,9 @@ export default function CeliaAnimation() {
   }, [animationIsTransitioning, celiaVerticalPosition, dispatch])
 
   useEffect(() => {
-    if (animationIsTransitioning) dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "climb"})
+    if (animationIsTransitioning) {
+      dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "climb"})
+    }
   }, [animationIsTransitioning, dispatch])
 
   window.onscroll = () => {
@@ -142,6 +152,8 @@ export default function CeliaAnimation() {
   }
 
   const animationGoTo = (direction) => {
+    if (currentDirection.current === direction) return
+    currentDirection.current = direction
     dispatch({ type: "SET_CELIA_VERTICAL_POSITION", celiaVerticalPosition: direction})
   }
 
