@@ -25,6 +25,13 @@ export default function Carousel() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSlide])
 
+  useEffect(() => {
+    const currentSlider = slider.current
+    const sliderHeight = parseInt(getComputedStyle(currentSlider).height, 10)
+    dispatch({ type: "SET_ANIMATION_MAX_HEIGHT", animationMaxHeight: sliderHeight})
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch])
+
   // Effect for defining celia animation in each slide
   useEffect(() => {
     switch(activeSlide) {
@@ -42,7 +49,6 @@ export default function Carousel() {
     }
   }, [activeSlide, dispatch])
   
-
   const moveToSlide = position => {
     // Everytime we move to a different slide, Celia is looking upfront
     dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})

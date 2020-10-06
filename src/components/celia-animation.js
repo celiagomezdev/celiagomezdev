@@ -8,7 +8,8 @@ export default function CeliaAnimation() {
   const { 
     celiaAnimationFrame, 
     celiaVerticalPosition, 
-    animationIsTransitioning, 
+    animationIsTransitioning,
+    animationMaxHeight,
     activeSlide
   } = state
 
@@ -58,13 +59,6 @@ export default function CeliaAnimation() {
       const setFramePosition = currentFrameValue === `${celiaFramesPosition.backRightSide}rem` ?
         celiaFramesPosition.backLeftSide : celiaFramesPosition.backRightSide
       celiaFramesRef.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
-
-      // celiaFramesRef.current.style.setProperty('--animation-frame-position', 
-      // `${celiaFramesPosition.backLeftSide}rem`)
-      // setTimeout(() => {
-      //   celiaFramesRef.current.style.setProperty('--animation-frame-position', 
-      //   `${celiaFramesPosition.backRightSide}rem`)
-      // }, 1000)
     }
 
     const show = () => {
@@ -126,18 +120,18 @@ export default function CeliaAnimation() {
       case "top": {
         dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"})
         if (window.scrollY === 0) return
-        celiaAnimationRef.current.style.setProperty('transform', `translateY(0rem)`)
+        celiaAnimationRef.current.style.setProperty('transform', `translateY(0)`)
         break
       }
       case "bottom": {
-        celiaAnimationRef.current.style.setProperty('transform', `translateY(36rem)`)
+        celiaAnimationRef.current.style.setProperty('transform', `translateY(${animationMaxHeight + 2}px)`)
         dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
         break
       }
       default:
         break
     }
-  }, [animationIsTransitioning, celiaVerticalPosition, dispatch])
+  }, [animationIsTransitioning, celiaVerticalPosition, dispatch, animationMaxHeight])
 
   useEffect(() => {
     if (animationIsTransitioning) {
