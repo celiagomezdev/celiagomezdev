@@ -2,7 +2,7 @@
 
 #middle-section {
   width: 100%;
-  height: 45rem;
+  height: 100%;
   background-color: var(--blue);
   background-image: linear-gradient(var(--blue), var(--pink));
   grid-column: 1/13;
@@ -10,12 +10,13 @@
 
 .carousel-wrapper {
   grid-column: 1/7;
+  margin-bottom: 3rem;
   z-index: var(--slide);
 }
 
 .text-wrapper {
   grid-column: 7/13;
-  margin: 10rem 0 10rem 1rem;
+  margin: 10rem 0 8rem 1rem;
   display: flex;
   align-items: flex-start;
 }
@@ -23,10 +24,11 @@
 @include tablet {
   .carousel-wrapper {
     grid-column: 1/7;
+    margin-bottom: 2rem;
   }
 
   .text-wrapper {
-    margin: 3rem 0;
+    margin: 0 0 7rem;
     grid-column: 1/7;
   }
 }
@@ -37,7 +39,7 @@
   }
 
   .text-wrapper {
-    margin: 1rem 0 3rem;
+    margin: 0 0 5rem;
     grid-column: 1/3;
   }
 }
