@@ -7,7 +7,7 @@ import { Context } from "../context"
 export default function Carousel() {
   // Use Context for accessing the state and actions to dispatch
   const [state, dispatch] = useContext(Context)
-  const { activeSlide, celiaVerticalPosition } = state
+  const { activeSlide, celiaVerticalPosition, animationIsTransitioning } = state
 
   const numberOfSlides = 3
   const slider = React.createRef()
@@ -85,6 +85,7 @@ export default function Carousel() {
 
   const slides = displayNumberOfSlides(numberOfSlides)
   const bullets = displayNumberOfBullets(numberOfSlides)
+  const celiaIsOnHero = !animationIsTransitioning && celiaVerticalPosition === "top"
 
   const leftArrowClass = classNames({
     [styles.arrow]: true,
@@ -95,7 +96,7 @@ export default function Carousel() {
   const rightArrowClass = classNames({
     [styles.arrow]: true,
     [styles.right]: true,
-    [styles.hidden]: activeSlide === 2 || celiaVerticalPosition === "top",
+    [styles.hidden]: activeSlide === 2 || celiaIsOnHero
   })
 
   return (
