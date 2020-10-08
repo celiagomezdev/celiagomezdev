@@ -8,20 +8,31 @@ export default function NavBar() {
   const { activeslide, celiaAnimationFrame} = state
 
   const goToSlide = slide => {
-    if (activeslide === 0 || celiaAnimationFrame !== "hello") dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: slide })
-    // Add timeout for waiting celia to be downstairs before moving to the next slide
-    else setTimeout(() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: slide }), 1500)
+    if (activeslide === 0 || celiaAnimationFrame !== "hello")
+      dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: slide })
+    else {
+      dispatch({ type: "SET_CELIA_VERTICAL_POSITION", celiaVerticalPosition: "bottom"})
+      // Add timeout for waiting celia to be downstairs before moving to the next slide
+      setTimeout(() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: slide }), 2000)
+    }
+  }
+
+  const goHome = () => {
+    goToSlide(0)
+    dispatch({ type: "SET_CELIA_VERTICAL_POSITION", celiaVerticalPosition: "top"})
   }
 
   return (
     <header id={styles.navBar} className={`outer-content grid`}>
       <h3 className={styles.logo}>
-        <Link to="/">celia gómez de villavedón pedrosa</Link>
+        <Link to="/"
+        onClick={() => goHome()}
+        >celia gómez de villavedón pedrosa</Link>
       </h3>
       <ul className={styles.menu}>
         <li>
           <Link to="/"
-          onClick={() => goToSlide(0)}
+          onClick={() => goHome()}
           >Home</Link>
         </li>
         <li>
