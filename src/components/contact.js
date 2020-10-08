@@ -9,7 +9,7 @@ export default function Contact() {
         <h1>Get in touch</h1>
         <p>
           Drop me a line if you have any questions or you would like to work
-          on some project together. It would be great to hear about you!{" "}
+          together. It would be great to hear about you!{" "}
           <a href="mailto:celiagomezdev@gmail.com">celiagomezdev@gmail.com</a>
           .
           <br />
