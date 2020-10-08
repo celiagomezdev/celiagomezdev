@@ -19,16 +19,19 @@ h3, ul {
   justify-self: start;
 }
 
-#nav-bar a {
-  text-decoration: none;
-  color: inherit;
-}
-
 .menu {
   list-style: none;
   float: right;
   justify-self: end;
   grid-column: 8/13;
+}
+
+.menu a {
+  font-weight: normal;
+}
+
+.menu a:hover {
+  font-weight: bold;
 }
 
 #nav-bar ul {
