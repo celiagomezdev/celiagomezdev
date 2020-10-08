@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import classNames from "classnames"
 import styles from "./carousel.module.scss"
 import arrow from "../static/img/arrow.svg"
 import { Context } from "../context"
 
 export default function Carousel() {
+  const [sliderWidth, setSliderWidth] = useState()
   // Use Context for accessing the state and actions to dispatch
   const [state, dispatch] = useContext(Context)
   const { activeSlide, celiaVerticalPosition, animationIsTransitioning } = state
@@ -12,27 +13,28 @@ export default function Carousel() {
   const numberOfSlides = 3
   const slider = React.createRef()
 
-  // Effect for updating the active slide position
   useEffect(() => {
     /**
      * Set the position of each slide.
      * We use negative values because we move them to the left.
      */
-    const currentSlider = slider.current
-    const sliderWidth = parseInt(getComputedStyle(currentSlider).width, 10)
-    const sliderTransformPosition = sliderWidth * activeSlide
-    currentSlider.style.transform = `translateX(-${sliderTransformPosition}px)`
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeSlide])
+    const sliderWidthOnRender = parseInt(getComputedStyle(slider.current).width, 10)
+    setSliderWidth(sliderWidthOnRender)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
-    const currentSlider = slider.current
-    const sliderHeight = parseInt(getComputedStyle(currentSlider).height, 10)
+    const sliderTransformPosition = sliderWidth * activeSlide
+    slider.current.style.transform = `translateX(-${sliderTransformPosition}px)`
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeSlide, sliderWidth])
+
+  useEffect(() => {
+    const sliderHeight = parseInt(getComputedStyle(slider.current).height, 10)
     dispatch({ type: "SET_ANIMATION_MAX_HEIGHT", animationMaxHeight: sliderHeight})
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
 
-  // Effect for defining celia animation in each slide
   useEffect(() => {
     switch(activeSlide) {
       case 0:
@@ -48,7 +50,14 @@ export default function Carousel() {
         break
     }
   }, [activeSlide, dispatch])
-  
+
+  window.onresize = () => {
+    if (slider.current) {
+      const sliderWidthOnResize = parseInt(getComputedStyle(slider.current).width, 10)
+      setSliderWidth(sliderWidthOnResize)
+    }
+  }
+
   const moveToSlide = position => {
     // Everytime we move to a different slide, Celia is looking upfront
     dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
