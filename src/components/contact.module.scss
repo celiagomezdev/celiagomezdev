@@ -29,16 +29,12 @@
 
 @include mobile {
   .section-copy {
-    padding: 3rem 0 2rem;
+    padding: 4rem 0 2rem;
     grid-column: 1/3;
   }
 
   .section-copy h1 {
     font-size: 2rem;
-  }
-
-  .section-copy p {
-    font-size: 1rem;
   }
 
   .image-section {

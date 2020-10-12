@@ -1,3 +1,5 @@
+@import "../assets/style/breakpoints";
+
 #akira {
   background-image: url("../static/img/akira.svg");
   background-repeat: no-repeat;
@@ -11,14 +13,17 @@
 .akira-tappable-area {
   cursor: pointer;
   position: absolute;
-  top: 1.5rem;
-  left: 5rem;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto; 
   width: 14rem;
   height: 12rem;
 }
 
 .eye {
-  left: 3.45rem;
+  left: 3.15rem;
   width: 7.3rem;
 }
 
@@ -27,9 +32,21 @@
 }
 
 .akira-open-eyes {
-  top: 2.2rem;
+  top: 1.5rem;
 }
 
 .akira-angry-eyes {
-  top: 3rem;
+  top: 2.21rem;
+}
+
+@include tablet {
+  .eye {
+    left: 3.16rem;
+  }
+}
+
+@include mobile {
+  .eye {
+    left: 3.16rem;
+  }
 }

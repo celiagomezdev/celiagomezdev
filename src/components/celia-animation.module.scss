@@ -1,3 +1,5 @@
+@import "../assets/style/breakpoints";
+
 :root {
   // default
   --animation-frame-position: 3.8rem;
@@ -30,4 +32,16 @@
 .celia img {
   height: 100%;
   margin-left: var(--animation-frame-position);
+}
+
+@include tablet {
+  .celia-container {
+    grid-column: 1/7;
+  }
+}
+
+@include mobile {
+  .celia-container {
+    grid-column: 1/3;
+  }
 }
