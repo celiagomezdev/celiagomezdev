@@ -11,7 +11,7 @@ export default function Carousel() {
   const { activeSlide, celiaVerticalPosition, animationIsTransitioning } = state
 
   const numberOfSlides = 3
-  const slider = React.createRef()
+  const slider = React.useRef()
 
   useEffect(() => {
     /**
@@ -52,10 +52,8 @@ export default function Carousel() {
   }, [activeSlide, dispatch])
 
   window.onresize = () => {
-    if (slider.current) {
-      const sliderWidthOnResize = parseInt(getComputedStyle(slider.current).width, 10)
-      setSliderWidth(sliderWidthOnResize)
-    }
+    const sliderWidthOnResize = parseInt(getComputedStyle(slider.current).width, 10)
+    setSliderWidth(sliderWidthOnResize)
   }
 
   const moveToSlide = position => {
