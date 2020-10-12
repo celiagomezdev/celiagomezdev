@@ -24,7 +24,7 @@ export default function CeliaAnimation() {
   const previousScroll = window.scrollY
 
   const celiaFramesPosition = {
-    front: 3.8,
+    front: 4,
     frontHello: -10.9,
     backOne: -27.4,
     backRightSide: -42.5,
