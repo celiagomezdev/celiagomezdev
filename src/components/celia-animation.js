@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react"
 import styles from "./celia-animation.module.scss"
 import celiaFramesImage from "../static/img/celia-frames.png"
 import { Context } from "../context"
+import { ACTION_TYPES } from "../constants/index"
 
 export default function CeliaAnimation() {
   const [state, dispatch] = useContext(Context)
@@ -37,10 +38,10 @@ export default function CeliaAnimation() {
 
   React.useEffect(() => {
     celiaAnimationRef.current.addEventListener("transitionrun", () => {
-      dispatch({ type: "SET_ANIMATION_IS_TRANSITIONING", animationIsTransitioning: true})
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_IS_TRANSITIONING, animationIsTransitioning: true})
     })
     celiaAnimationRef.current.addEventListener("transitionend", () => {
-      dispatch({ type: "SET_ANIMATION_IS_TRANSITIONING", animationIsTransitioning: false})
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_IS_TRANSITIONING, animationIsTransitioning: false})
     })
   }, [celiaAnimationRef, dispatch])
 
@@ -118,14 +119,14 @@ export default function CeliaAnimation() {
     if (animationIsTransitioning) return
     switch (celiaVerticalPosition) {
       case "top": {
-        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "hello"})
+        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "hello"})
         if (window.scrollY === 0) return
         celiaAnimationRef.current.style.setProperty('transform', `translateY(0)`)
         break
       }
       case "bottom": {
         celiaAnimationRef.current.style.setProperty('transform', `translateY(${animationMaxHeight + 2}px)`)
-        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
+        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
         break
       }
       default:
@@ -135,7 +136,7 @@ export default function CeliaAnimation() {
 
   useEffect(() => {
     if (animationIsTransitioning) {
-      dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "climb"})
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "climb"})
     }
   }, [animationIsTransitioning, dispatch])
 
@@ -151,7 +152,7 @@ export default function CeliaAnimation() {
   const animationGoTo = (direction) => {
     if (currentDirection.current === direction) return
     currentDirection.current = direction
-    dispatch({ type: "SET_CELIA_VERTICAL_POSITION", celiaVerticalPosition: direction})
+    dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: direction})
   }
 
   return(

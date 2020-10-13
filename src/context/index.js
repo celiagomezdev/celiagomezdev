@@ -1,4 +1,5 @@
 import React from "react"
+import { ACTION_TYPES } from "../constants/index"
 
 // TODO: Create enums for strings
 const initialState = {
@@ -11,31 +12,31 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "SET_ACTIVE_SLIDE": {
+    case ACTION_TYPES.SET_ACTIVE_SLIDE: {
       return {
         ...state,
         activeSlide: action.activeSlide,
       }
     }
-    case "SET_CELIA_VERTICAL_POSITION": {
+    case ACTION_TYPES.SET_CELIA_VERTICAL_POSITION: {
       return {
         ...state,
         celiaVerticalPosition: action.celiaVerticalPosition,
       }
     }
-    case "SET_ANIMATION_FRAME": {
+    case ACTION_TYPES.SET_ANIMATION_FRAME: {
       return {
         ...state,
         celiaAnimationFrame: action.celiaAnimationFrame,
       }
     }
-    case "SET_ANIMATION_IS_TRANSITIONING": {
+    case ACTION_TYPES.SET_ANIMATION_IS_TRANSITIONING: {
       return {
         ...state,
         animationIsTransitioning: action.animationIsTransitioning,
       }
     }
-    case "SET_ANIMATION_MAX_HEIGHT": {
+    case ACTION_TYPES.SET_ANIMATION_MAX_HEIGHT: {
       return {
         ...state,
         animationMaxHeight: action.animationMaxHeight,
