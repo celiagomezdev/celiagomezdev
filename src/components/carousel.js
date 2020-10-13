@@ -3,6 +3,7 @@ import classNames from "classnames"
 import styles from "./carousel.module.scss"
 import arrow from "../static/img/arrow.svg"
 import { Context } from "../context"
+import { ACTION_TYPES } from "../constants/index"
 
 export default function Carousel() {
   const [sliderWidth, setSliderWidth] = useState()
@@ -31,20 +32,20 @@ export default function Carousel() {
 
   useEffect(() => {
     const sliderHeight = parseInt(getComputedStyle(slider.current).height, 10)
-    dispatch({ type: "SET_ANIMATION_MAX_HEIGHT", animationMaxHeight: sliderHeight})
+    dispatch({ type: ACTION_TYPES.SET_ANIMATION_MAX_HEIGHT, animationMaxHeight: sliderHeight})
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
 
   useEffect(() => {
     switch(activeSlide) {
       case 0:
-        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
+        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
         break
       case 1:
-        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "showing"})
+        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "showing"})
         break
       case 2: 
-        dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "typing"})
+        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "typing"})
         break
       default:
         break
@@ -58,8 +59,8 @@ export default function Carousel() {
 
   const moveToSlide = position => {
     // Everytime we move to a different slide, Celia is looking upfront
-    dispatch({ type: "SET_ANIMATION_FRAME", celiaAnimationFrame: "front"})
-    dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: position })
+    dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
+    dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: position })
   }
 
   const moveToNext = () => {

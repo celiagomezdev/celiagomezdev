@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import styles from "./nav-bar.module.scss"
 import { Link } from "gatsby"
 import { Context } from "../context"
+import { ACTION_TYPES } from "../constants/index"
 
 export default function NavBar() {
   const [state, dispatch] = useContext(Context)
@@ -9,17 +10,17 @@ export default function NavBar() {
 
   const goToSlide = slide => {
     if (activeslide === 0 || celiaAnimationFrame !== "hello")
-      dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: slide })
+      dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: slide })
     else {
-      dispatch({ type: "SET_CELIA_VERTICAL_POSITION", celiaVerticalPosition: "bottom"})
+      dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: "bottom"})
       // Add timeout for waiting celia to be downstairs before moving to the next slide
-      setTimeout(() => dispatch({ type: "SET_ACTIVE_SLIDE", activeSlide: slide }), 2000)
+      setTimeout(() => dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: slide }), 2000)
     }
   }
 
   const goHome = () => {
     goToSlide(0)
-    dispatch({ type: "SET_CELIA_VERTICAL_POSITION", celiaVerticalPosition: "top"})
+    dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: "top"})
   }
 
   return (
