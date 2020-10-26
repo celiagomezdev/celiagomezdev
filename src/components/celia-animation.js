@@ -63,6 +63,7 @@ export default function CeliaAnimation() {
         break
       }
       case "bottom": {
+        // TODO: find a better way to set the maximum height without adding those extra 2px
         celiaAnimationRef.current.style.setProperty('transform', `translateY(${animationMaxHeight + 2}px)`)
         dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
         break
@@ -97,8 +98,7 @@ export default function CeliaAnimation() {
   window.onscroll = () => {
     /* Early return if we are positioned below 
     the middle section or we are not in the initial slide */
-    if (window.scrollY > 500) return
-    if (activeSlide !== 0) return
+    if (window.scrollY > 500 || activeSlide !== 0) return
     const isGoingDown = previousScroll < window.scrollY
     animationGoTo(isGoingDown ? "bottom" : "top")
   }
