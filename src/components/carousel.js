@@ -9,10 +9,12 @@ export default function Carousel() {
   const [sliderWidth, setSliderWidth] = useState()
   // Use Context for accessing the state and actions to dispatch
   const [state, dispatch] = useContext(Context)
-  const { activeSlide, celiaVerticalPosition, animationIsTransitioning } = state
+  const { activeSlide, celiaVerticalPosition, celiaAnimationFrame, animationIsTransitioning } = state
 
   const numberOfSlides = 3
   const slider = React.useRef()
+  const showIntervalRef = React.useRef()
+  const typeIntervalRef = React.useRef()
 
   useEffect(() => {
     /**
@@ -37,20 +39,36 @@ export default function Carousel() {
   }, [dispatch])
 
   useEffect(() => {
+    const showAnimation = () => {
+      const newFramePosition = celiaAnimationFrame === "backTwo" ?
+      "backThree" : "backTwo"
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: newFramePosition})
+    }
+  
+    const typeAnimation = () => {
+      const newFramePosition = celiaAnimationFrame === "sitOne" ?
+      "sitTwo" : "sitOne"
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: newFramePosition})
+    }
+
     switch(activeSlide) {
-      case 0:
-        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
-        break
       case 1:
-        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "showing"})
+        const showIntervalId = setInterval(() => showAnimation(), 1000)
+        showIntervalRef.current = showIntervalId
         break
       case 2: 
-        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "typing"})
+        const typeIntervalId = setInterval(() => typeAnimation(), 500)
+        typeIntervalRef.current = typeIntervalId
         break
       default:
         break
     }
-  }, [activeSlide, dispatch])
+
+    return () => {
+      clearInterval(showIntervalRef.current)
+      clearInterval(typeIntervalRef.current)
+    }
+  }, [activeSlide, celiaAnimationFrame, dispatch])
 
   window.onresize = () => {
     const sliderWidthOnResize = parseInt(getComputedStyle(slider.current).width, 10)

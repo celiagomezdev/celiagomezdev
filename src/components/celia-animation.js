@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useState, useContext } from "react"
 import styles from "./celia-animation.module.scss"
 import celiaFramesImage from "../static/img/celia-frames.png"
 import { Context } from "../context"
@@ -6,6 +6,8 @@ import { ACTION_TYPES } from "../constants/index"
 
 export default function CeliaAnimation() {
   const [state, dispatch] = useContext(Context)
+  const [helloAnimationLoop, setHelloAnimationLoop] = useState()
+
   const { 
     celiaAnimationFrame, 
     celiaVerticalPosition, 
@@ -16,10 +18,7 @@ export default function CeliaAnimation() {
 
   const celiaAnimationRef = React.useRef()
   const celiaFramesRef = React.useRef()
-  const sayHelloIntervalRef = React.useRef()
   const climbLadderIntervalRef = React.useRef()
-  const showIntervalRef = React.useRef()
-  const typeIntervalRef = React.useRef()
   const currentDirection = React.useRef()
 
   const previousScroll = window.scrollY
@@ -36,8 +35,10 @@ export default function CeliaAnimation() {
     sitTwo: -128
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     celiaAnimationRef.current.addEventListener("transitionrun", () => {
+      // We make sure that celia is backwards when initiating the tranistion
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "backRightSide"})
       dispatch({ type: ACTION_TYPES.SET_ANIMATION_IS_TRANSITIONING, animationIsTransitioning: true})
     })
     celiaAnimationRef.current.addEventListener("transitionend", () => {
@@ -45,81 +46,18 @@ export default function CeliaAnimation() {
     })
   }, [celiaAnimationRef, dispatch])
 
-  useEffect(() => {
-    const wave = () => {
-      celiaFramesRef.current.style.setProperty('--animation-frame-position', 
-        `${celiaFramesPosition.frontHello}rem`)
-      setTimeout(() => {
-        celiaFramesRef.current.style.setProperty('--animation-frame-position', 
-        `${celiaFramesPosition.front}rem`)
-      }, 1000)
-    }
-  
-    const climb = () => {
-      const currentFrameValue = celiaFramesRef.current.style.getPropertyValue('--animation-frame-position')
-      const setFramePosition = currentFrameValue === `${celiaFramesPosition.backRightSide}rem` ?
-        celiaFramesPosition.backLeftSide : celiaFramesPosition.backRightSide
-      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
-    }
-
-    const show = () => {
-      const currentFrameValue = celiaFramesRef.current.style.getPropertyValue('--animation-frame-position')
-      const setFramePosition = currentFrameValue === `${celiaFramesPosition.backTwo}rem` ?
-        celiaFramesPosition.backThree : celiaFramesPosition.backTwo
-      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
-    }
-
-    const type = () => {
-      const currentFrameValue = celiaFramesRef.current.style.getPropertyValue('--animation-frame-position')
-      const setFramePosition = currentFrameValue === `${celiaFramesPosition.sitOne}rem` ?
-        celiaFramesPosition.sitTwo : celiaFramesPosition.sitOne
-      celiaFramesRef.current.style.setProperty('--animation-frame-position', `${setFramePosition}rem`)
-    }
-
-    switch (celiaAnimationFrame) {
-      case "hello": {
-        celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)
-        const helloIntervalId = setInterval(() => wave(), 5000)
-        sayHelloIntervalRef.current = helloIntervalId
-        break
-      }
-      case "climb": {
-        climb()
-        const climbIntervalId = setInterval(() => climb(), 400)
-        climbLadderIntervalRef.current = climbIntervalId
-        break
-      }
-      case "back": {
-        celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.backOne}rem`)
-        break
-      }
-      case "showing": {
-        const showIntervalId = setInterval(() => show(), 1000)
-        showIntervalRef.current = showIntervalId
-        break
-      }
-      case "typing": {
-        const typeIntervalId = setInterval(() => type(), 500)
-        typeIntervalRef.current = typeIntervalId
-        break
-      }
-      default:
-        celiaFramesRef.current.style.setProperty('--animation-frame-position', `${celiaFramesPosition.front}rem`)    
-    }
-
-    return () => {
-      clearInterval(sayHelloIntervalRef.current)
-      clearInterval(climbLadderIntervalRef.current)
-      clearInterval(showIntervalRef.current)
-      clearInterval(typeIntervalRef.current)
-    }
+  React.useEffect(() => {
+    celiaFramesRef.current.style.setProperty('--animation-frame-position', 
+        `${celiaFramesPosition[celiaAnimationFrame]}rem`)
   }, [celiaAnimationFrame, celiaFramesPosition, dispatch])
 
   useEffect(() => {
     if (animationIsTransitioning) return
     switch (celiaVerticalPosition) {
       case "top": {
-        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "hello"})
+        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
+        setHelloAnimationLoop(setInterval(() => helloAnimation(), 5000))
+
         if (window.scrollY === 0) return
         celiaAnimationRef.current.style.setProperty('transform', `translateY(0)`)
         break
@@ -132,13 +70,29 @@ export default function CeliaAnimation() {
       default:
         break
     }
-  }, [animationIsTransitioning, celiaVerticalPosition, dispatch, animationMaxHeight])
+
+    return () => {
+      clearInterval(helloAnimationLoop)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [animationIsTransitioning, celiaVerticalPosition])
 
   useEffect(() => {
-    if (animationIsTransitioning) {
-      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "climb"})
+    const climbAnimation = () => {
+      const newFramePosition = celiaAnimationFrame === "backRightSide" ?
+      "backLeftSide" : "backRightSide"
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: newFramePosition})
     }
-  }, [animationIsTransitioning, dispatch])
+
+    if (animationIsTransitioning) {
+      const climbIntervalId = setInterval(() => climbAnimation(), 400)
+      climbLadderIntervalRef.current = climbIntervalId
+    }
+
+    return () => {
+      clearInterval(climbLadderIntervalRef.current)
+    }
+  }, [animationIsTransitioning, celiaAnimationFrame, dispatch])
 
   window.onscroll = () => {
     /* Early return if we are positioned below 
@@ -147,6 +101,13 @@ export default function CeliaAnimation() {
     if (activeSlide !== 0) return
     const isGoingDown = previousScroll < window.scrollY
     animationGoTo(isGoingDown ? "bottom" : "top")
+  }
+
+  const helloAnimation = () => {
+    dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "frontHello"})
+    setTimeout(() => {
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
+    }, 1000)
   }
 
   const animationGoTo = (direction) => {
