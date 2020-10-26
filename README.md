@@ -1,7 +1,7 @@
 # celiagomezdev
-> 🚧 Bear with me! this website is under construction 🚧
 
-Personal website built with Gatsby. 
+Personal website built with Gatsby. 🚧 under construction 🚧
+
 
 ## 🚀 Run it locally
 
@@ -17,4 +17,10 @@ git clone https://github.com/celiagomezdev/celiagomezdev.git
 cd celiagomezdev
 npm install
 gatsby develop
+```
+
+You can now view the website in the browser:
+
+```
+http://localhost:8000/
 ```
