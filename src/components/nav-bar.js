@@ -6,10 +6,10 @@ import { ACTION_TYPES } from "../constants/index"
 
 export default function NavBar() {
   const [state, dispatch] = useContext(Context)
-  const { activeslide, celiaAnimationFrame} = state
+  const { activeslide, celiaVerticalPosition } = state
 
   const goToSlide = slide => {
-    if (activeslide === 0 || celiaAnimationFrame !== "hello")
+    if (activeslide === 0 || celiaVerticalPosition !== "top" )
       dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: slide })
     else {
       dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: "bottom"})
