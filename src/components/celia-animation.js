@@ -47,7 +47,7 @@ export default function CeliaAnimation() {
     })
   }, [celiaAnimationRef, dispatch])
 
-  React.useEffect(() => {
+  useEffect(() => {
     celiaFramesRef.current.style.setProperty('--animation-frame-position', 
         `${celiaFramesPosition[celiaAnimationFrame]}rem`)
   }, [celiaAnimationFrame, celiaFramesPosition, dispatch])
