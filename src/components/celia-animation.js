@@ -25,7 +25,7 @@ export default function CeliaAnimation() {
 
   const celiaFramesPosition = {
     front: 4,
-    frontHello: -10.9,
+    frontHello: -10.65,
     backOne: -27.4,
     backRightSide: -42.5,
     backLeftSide: -58.7,
@@ -104,6 +104,7 @@ export default function CeliaAnimation() {
   }
 
   const helloAnimation = () => {
+    if (celiaVerticalPosition !== "top") return
     dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "frontHello"})
     setTimeout(() => {
       dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
