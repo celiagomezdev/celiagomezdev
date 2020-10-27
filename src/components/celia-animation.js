@@ -21,7 +21,8 @@ export default function CeliaAnimation() {
   const climbLadderIntervalRef = React.useRef()
   const currentDirection = React.useRef()
 
-  const previousScroll = window.scrollY
+  const windowGlobal = typeof window !== 'undefined' && window
+  const previousScroll = windowGlobal.scrollY
 
   const celiaFramesPosition = {
     front: 4,
@@ -58,7 +59,7 @@ export default function CeliaAnimation() {
         dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
         setHelloAnimationLoop(setInterval(() => helloAnimation(), 5000))
 
-        if (window.scrollY === 0) return
+        if (windowGlobal.scrollY === 0) return
         celiaAnimationRef.current.style.setProperty('transform', `translateY(0)`)
         break
       }
@@ -95,13 +96,16 @@ export default function CeliaAnimation() {
     }
   }, [animationIsTransitioning, celiaAnimationFrame, dispatch])
 
-  window.onscroll = () => {
-    /* Early return if we are positioned below 
-    the middle section or we are not in the initial slide */
-    if (window.scrollY > 500 || activeSlide !== 0) return
-    const isGoingDown = previousScroll < window.scrollY
-    animationGoTo(isGoingDown ? "bottom" : "top")
-  }
+  useEffect(() => {
+    windowGlobal.onscroll = () => {
+      /* Early return if we are positioned below 
+      the middle section or we are not in the initial slide */
+      if (windowGlobal.scrollY > 500 || activeSlide !== 0) return
+      const isGoingDown = previousScroll < windowGlobal.scrollY
+      animationGoTo(isGoingDown ? "bottom" : "top")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [windowGlobal, activeSlide, previousScroll])
 
   const helloAnimation = () => {
     if (celiaVerticalPosition !== "top") return

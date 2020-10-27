@@ -16,6 +16,8 @@ export default function Carousel() {
   const showIntervalRef = React.useRef()
   const typeIntervalRef = React.useRef()
 
+  const windowGlobal = typeof window !== 'undefined' && window
+
   useEffect(() => {
     /**
      * Set the position of each slide.
@@ -70,10 +72,12 @@ export default function Carousel() {
     }
   }, [activeSlide, celiaAnimationFrame, dispatch])
 
-  window.onresize = () => {
-    const sliderWidthOnResize = parseInt(getComputedStyle(slider.current).width, 10)
-    setSliderWidth(sliderWidthOnResize)
-  }
+  useEffect(() => {
+    windowGlobal.onresize = () => {
+      const sliderWidthOnResize = parseInt(getComputedStyle(slider.current).width, 10)
+      setSliderWidth(sliderWidthOnResize)
+    }
+  },[windowGlobal])
 
   const moveToSlide = position => {
     // Everytime we move to a different slide, Celia is looking upfront
