@@ -35,12 +35,12 @@ beforeEach(() => {
 })
 
 describe("Carousel", () => {
-  it("has the left arrow button hidden on first slide (initial state)", () => {
+  it("does not have a left arrow on the first slide", () => {
     const leftArrowButton = screen.getByLabelText("Go to previous slide")
     expect(leftArrowButton).not.toBeVisible()
   })
 
-  it("has the right arrow button visible on first slide (initial state)", () => {
+  it("does have a right arrow on the first slide", () => {
     const rightArrowButton = screen.getByLabelText("Go to next slide")
     expect(rightArrowButton).toBeVisible()
   })
