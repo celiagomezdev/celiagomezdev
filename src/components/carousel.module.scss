@@ -15,8 +15,16 @@
   width: 100%;
 }
 
-.arrow {
+#carousel-container button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
   cursor: pointer;
+  outline: inherit;
+}
+
+.arrow {
   margin: 0 0.8rem;
   position: absolute;
   top: 60%;
