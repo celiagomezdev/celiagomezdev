@@ -138,9 +138,9 @@ export default function Carousel() {
   return (
     <div id={styles.carouselContainer}>
       <div id={styles.sliderContainer}>
-        <div className={leftArrowClass} onClick={() => moveToPrevious()}>
+        <button aria-label="Go to previous slide" className={leftArrowClass} onClick={() => moveToPrevious()}>
           <img src={arrow} alt="Arrow Left"></img>
-        </div>
+        </button>
         <div className={styles.slides} ref={slider}>
           {slides}
         </div>
