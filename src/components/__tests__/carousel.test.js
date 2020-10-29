@@ -39,6 +39,11 @@ describe("Carousel", () => {
     const leftArrowButton = screen.getByLabelText("Go to previous slide")
     expect(leftArrowButton).not.toBeVisible()
   })
+
+  it("has the right arrow button visible on first slide (initial state)", () => {
+    const rightArrowButton = screen.getByLabelText("Go to next slide")
+    expect(rightArrowButton).toBeVisible()
+  })
 })
 
 
