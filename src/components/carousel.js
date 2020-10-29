@@ -144,9 +144,9 @@ export default function Carousel() {
         <div className={styles.slides} ref={slider}>
           {slides}
         </div>
-        <div className={rightArrowClass} onClick={() => moveToNext()}>
+        <button aria-label="Go to next slide" className={rightArrowClass} onClick={() => moveToNext()}>
           <img src={arrow} alt="Arrow Right"></img>
-        </div>
+        </button>
       </div>
       <div id={styles.bulletsMenuContainer}>
         <div className={styles.bulletsMenu}>{bullets}</div>
