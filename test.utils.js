@@ -1,3 +1,4 @@
+/** Source: https://testing-library.com/docs/react-testing-library/setup#custom-render */
 import React from 'react'
 import { render } from '@testing-library/react'
 import { Store } from './src/context/index'

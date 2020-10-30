@@ -24,3 +24,10 @@ You can now view the website in the browser:
 ```
 http://localhost:8000/
 ```
+
+## 🕵️‍♀️ Test
+
+Being at root directory, just run:
+```
+npm test
+```
