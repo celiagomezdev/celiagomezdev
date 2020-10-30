@@ -16,7 +16,6 @@ const injectCSS = (container) => {
 
 beforeEach(() => {
   const { container } = render(<Carousel />)
-  // Inject computed css into jsdom
   injectCSS(container)
 })
 
