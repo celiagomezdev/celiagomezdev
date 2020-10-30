@@ -1,15 +1,9 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
-import { Context } from "../../context"
+import { render, screen, fireEvent } from "../../../test.utils"
 import fs from 'fs'
 import path from 'path'
 import Carousel from "../carousel"
 
-let state
-// Mock dispatch method
-const dispatch = jest.fn()
-
-// Inject computed styles into jsdom
 const injectCSS = (container) => {
   const cssFile = fs.readFileSync(
     path.resolve(__dirname, '../carousel.module.scss'),
@@ -21,16 +15,8 @@ const injectCSS = (container) => {
 }
 
 beforeEach(() => {
-  // Mock state
-  state = { activeSlide: 0 }
-
-  // Render Carousel Component before each test
-  const { container } = render(
-    <Context.Provider value={[state, dispatch]}>
-      <Carousel />
-    </Context.Provider>
-  )
-
+  const { container } = render(<Carousel />)
+  // Inject computed css into jsdom
   injectCSS(container)
 })
 
@@ -43,6 +29,21 @@ describe("Carousel", () => {
   it("does have a right arrow on the first slide", () => {
     const rightArrowButton = screen.getByLabelText("Go to next slide")
     expect(rightArrowButton).toBeVisible()
+  })
+
+  it("does have a right and a left arrow on the second slide", () => {
+    const leftArrowButton = screen.getByLabelText("Go to previous slide")
+    const rightArrowButton = screen.getByLabelText("Go to next slide")
+    fireEvent.click(rightArrowButton)
+    expect(leftArrowButton).toBeVisible()
+    expect(rightArrowButton).toBeVisible()
+  })
+
+  it("does not have a right arrow on the last slide", () => {
+    const rightArrowButton = screen.getByLabelText("Go to next slide")
+    fireEvent.click(rightArrowButton)
+    fireEvent.click(rightArrowButton)
+    expect(rightArrowButton).not.toBeVisible()
   })
 })
 

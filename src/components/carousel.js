@@ -9,7 +9,7 @@ export default function Carousel() {
   const [sliderWidth, setSliderWidth] = useState()
   // Use Context for accessing the state and actions to dispatch
   const [state, dispatch] = useContext(Context)
-  const { activeSlide, celiaVerticalPosition, celiaAnimationFrame, animationIsTransitioning } = state
+  const { activeSlide, celiaAnimationFrame } = state
 
   const numberOfSlides = 3
   const slider = React.useRef()
@@ -121,7 +121,9 @@ export default function Carousel() {
 
   const slides = displayNumberOfSlides(numberOfSlides)
   const bullets = displayNumberOfBullets(numberOfSlides)
-  const celiaIsOnHero = !animationIsTransitioning && celiaVerticalPosition === "top"
+  /* TODO: Consider bringing this functionality back once 
+  whe figure out how to test it with RTL */
+  // const celiaIsOnHero = !animationIsTransitioning && celiaVerticalPosition === "top"
 
   const leftArrowClass = classNames({
     [styles.arrow]: true,
@@ -132,7 +134,7 @@ export default function Carousel() {
   const rightArrowClass = classNames({
     [styles.arrow]: true,
     [styles.right]: true,
-    [styles.hidden]: activeSlide === 2 || celiaIsOnHero
+    [styles.hidden]: activeSlide === 2
   })
 
   return (
