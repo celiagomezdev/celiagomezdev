@@ -116,11 +116,12 @@ export default function Carousel() {
 
     return new Array(number).fill().map(function (slide, index) {
       return (
-        <span
+        <button
           className={setBulletClass(index)}
           key={index}
+          aria-label={`Go to slide ${index}`}
           onClick={() => moveToSlide(index)}
-        ></span>
+        ></button>
       )
     })
   }

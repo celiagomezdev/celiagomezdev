@@ -70,4 +70,14 @@ describe("Carousel", () => {
     expect(firstSlide).toHaveAttribute("aria-current", "false")
     expect(thirdSlide).toHaveAttribute("aria-current", "false")
   })
+
+  it("moves to the second slide when clicking the middle dot", () => {
+    const middleDot = screen.getByLabelText("Go to slide 1")
+    const secondSlide = screen.getByLabelText("Slide number 1")
+  
+    fireEvent.click(middleDot)
+
+    expect(middleDot).toHaveClass("active")
+    expect(secondSlide).toHaveAttribute("aria-current", "true")
+  })
 })
