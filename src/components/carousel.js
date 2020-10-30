@@ -96,7 +96,13 @@ export default function Carousel() {
   const displayNumberOfSlides = number => {
     return new Array(number).fill().map(function (slide, index) {
       return (
-        <div className={styles.slide} data-position={index} key={index}></div>
+        <div 
+          className={styles.slide} 
+          aria-label={`Slide number ${index}`}
+          aria-current={activeSlide === index}
+          data-position={index}
+          key={index}>
+        </div>
       )
     })
   }
