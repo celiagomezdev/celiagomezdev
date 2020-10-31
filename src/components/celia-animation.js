@@ -37,6 +37,13 @@ export default function CeliaAnimation() {
   }
 
   useEffect(() => {
+    // Set initial component state on first render
+    dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
+    dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: "top"})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
     celiaAnimationRef.current.addEventListener("transitionrun", () => {
       // We make sure that celia is backwards when initiating the tranistion
       dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "backRightSide"})
@@ -48,8 +55,10 @@ export default function CeliaAnimation() {
   }, [celiaAnimationRef, dispatch])
 
   useEffect(() => {
+    // Fallback in case we receive idle
+    const newFrame = celiaAnimationFrame === "idle" ? "front" : celiaAnimationFrame
     celiaFramesRef.current.style.setProperty('--animation-frame-position', 
-        `${celiaFramesPosition[celiaAnimationFrame]}rem`)
+        `${celiaFramesPosition[newFrame]}rem`)
   }, [celiaAnimationFrame, celiaFramesPosition, dispatch])
 
   useEffect(() => {

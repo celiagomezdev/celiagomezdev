@@ -4,8 +4,8 @@ import { ACTION_TYPES } from "../constants/index"
 // TODO: Create enums for strings
 const initialState = {
   activeSlide: 0,
-  celiaAnimationFrame: "hello",
-  celiaVerticalPosition: "top",
+  celiaAnimationFrame: "idle",
+  celiaVerticalPosition: "idle",
   animationIsTransitioning: false,
   animationMaxHeight: null,
 }
