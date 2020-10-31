@@ -78,5 +78,11 @@ describe("Carousel", () => {
 
     expect(middleDot).toHaveClass("active")
     expect(secondSlide).toHaveAttribute("aria-current", "true")
+
+    // The other slides are not current
+    const firstSlide = screen.getByLabelText("Slide number 0")
+    const thirdSlide = screen.getByLabelText("Slide number 2")
+    expect(firstSlide).toHaveAttribute("aria-current", "false")
+    expect(thirdSlide).toHaveAttribute("aria-current", "false")
   })
 })
