@@ -27,7 +27,7 @@ http://localhost:8000/
 
 ## 🕵️‍♀️ Test
 
-Being at root directory, just run:
+Just run:
 ```
 npm test
 ```
