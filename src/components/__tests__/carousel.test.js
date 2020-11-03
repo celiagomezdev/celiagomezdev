@@ -162,4 +162,22 @@ describe("Carousel", () => {
     expect(middleDot).not.toHaveClass("active")
     expect(thirdDot).not.toHaveClass("active")
   })
+
+  it("has the expected background image in the first slide", () => {
+    const firstSlide = screen.getByLabelText("Slide number 0")
+
+    expect(firstSlide).toHaveStyle(`background-image: url("../static/img/ladder.svg")`)
+  })
+
+  it("has the expected background image in the second slide", () => {
+    const secondSlide = screen.getByLabelText("Slide number 1")
+
+    expect(secondSlide).toHaveStyle(`background-image: url("../static/img/projects.svg")`)
+  })
+
+  it("has the expected background image in the third slide", () => {
+    const thirdSlide = screen.getByLabelText("Slide number 2")
+
+    expect(thirdSlide).toHaveStyle(`background-image: url("../static/img/skills.svg")`)
+  })
 })
