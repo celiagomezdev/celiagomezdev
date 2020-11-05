@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react"
+import React, { useEffect, useContext } from "react"
 import styles from "./celia-animation.module.scss"
 import celiaFramesImage from "../static/img/celia-frames.png"
 import { Context } from "../context"
@@ -6,7 +6,6 @@ import { ACTION_TYPES } from "../constants/index"
 
 export default function CeliaAnimation() {
   const [state, dispatch] = useContext(Context)
-  const [helloAnimationLoop, setHelloAnimationLoop] = useState()
 
   const { 
     celiaAnimationFrame, 
@@ -20,6 +19,7 @@ export default function CeliaAnimation() {
   const celiaFramesRef = React.useRef()
   const climbLadderIntervalRef = React.useRef()
   const currentDirection = React.useRef()
+  const helloIntervalID = React.useRef(null)
 
   const windowGlobal = typeof window !== 'undefined' && window
   const previousScroll = windowGlobal.scrollY
@@ -62,11 +62,16 @@ export default function CeliaAnimation() {
   }, [celiaAnimationFrame, celiaFramesPosition, dispatch])
 
   useEffect(() => {
+    const helloAnimation = () => {
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "frontHello"})
+      setTimeout(() => dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"}), 1000)
+    }
+
     if (animationIsTransitioning) return
     switch (celiaVerticalPosition) {
       case "top": {
         dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
-        setHelloAnimationLoop(setInterval(() => helloAnimation(), 5000))
+        helloIntervalID.current = setInterval(() => helloAnimation(), 5000)
 
         if (windowGlobal.scrollY === 0) return
         celiaAnimationRef.current.style.setProperty('transform', `translateY(0)`)
@@ -83,7 +88,7 @@ export default function CeliaAnimation() {
     }
 
     return () => {
-      clearInterval(helloAnimationLoop)
+      clearInterval(helloIntervalID.current)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [animationIsTransitioning, celiaVerticalPosition])
@@ -115,14 +120,6 @@ export default function CeliaAnimation() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowGlobal, activeSlide, previousScroll])
-
-  const helloAnimation = () => {
-    if (celiaVerticalPosition !== "top") return
-    dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "frontHello"})
-    setTimeout(() => {
-      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
-    }, 1000)
-  }
 
   const animationGoTo = (direction) => {
     if (currentDirection.current === direction) return
