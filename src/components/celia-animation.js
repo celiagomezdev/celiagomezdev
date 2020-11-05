@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react"
+import React, { useRef, useEffect, useContext } from "react"
 import styles from "./celia-animation.module.scss"
 import celiaFramesImage from "../static/img/celia-frames.png"
 import { Context } from "../context"
@@ -15,11 +15,11 @@ export default function CeliaAnimation() {
     activeSlide
   } = state
 
-  const celiaAnimationRef = React.useRef()
-  const celiaFramesRef = React.useRef()
-  const climbLadderIntervalRef = React.useRef()
-  const currentDirection = React.useRef()
-  const helloIntervalID = React.useRef(null)
+  const celiaAnimationRef = useRef()
+  const celiaFramesRef = useRef()
+  const climbLadderIntervalRef = useRef()
+  const currentDirection = useRef()
+  const helloIntervalID = useRef(null)
 
   const windowGlobal = typeof window !== 'undefined' && window
   const previousScroll = windowGlobal.scrollY
