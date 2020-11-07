@@ -6,6 +6,7 @@ const initialState = {
   activeSlide: 0,
   celiaAnimationFrame: "idle",
   celiaVerticalPosition: "idle",
+  celiaVerticalDirection: "idle",
   animationIsTransitioning: false,
   animationMaxHeight: null,
 }
@@ -22,6 +23,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         celiaVerticalPosition: action.celiaVerticalPosition,
+      }
+    }
+    case ACTION_TYPES.SET_CELIA_VERTICAL_DIRECTION: {
+      return {
+        ...state,
+        celiaVerticalDirection: action.celiaVerticalDirection,
       }
     }
     case ACTION_TYPES.SET_ANIMATION_FRAME: {
