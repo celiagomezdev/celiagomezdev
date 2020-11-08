@@ -6,21 +6,22 @@ import { ACTION_TYPES } from "../constants/index"
 
 export default function NavBar() {
   const [state, dispatch] = useContext(Context)
-  const { activeslide, celiaVerticalPosition } = state
+  const { celiaVerticalPosition } = state
 
   const goToSlide = slide => {
-    if (activeslide === 0 || celiaVerticalPosition !== "top" )
+    if (celiaVerticalPosition === "bottom" ) {
+      // Everytime we move to a different slide, celia should be frontwards
+      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
       dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: slide })
-    else {
-      dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: "bottom"})
+    } else {
       // Add timeout for waiting celia to be downstairs before moving to the next slide
-      setTimeout(() => dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: slide }), 2000)
+      setTimeout(() => dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: slide }), 2500)
     }
   }
 
   const goHome = () => {
     goToSlide(0)
-    dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: "top"})
+    dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_DIRECTION, celiaVerticalDirection: "toTop"})
   }
 
   return (
