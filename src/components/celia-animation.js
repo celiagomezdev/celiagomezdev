@@ -72,26 +72,16 @@ export default function CeliaAnimation() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [celiaAnimationFrame])
 
+  const helloAnimation = () => {
+    dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "frontHello"})
+    setTimeout(() => dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"}), 1000)
+  }
+
   useEffect(() => {
-    const helloAnimation = () => {
-      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "frontHello"})
-      setTimeout(() => dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"}), 1000)
-    }
-
-    const climbAnimation = () => {
-      const newFramePosition = celiaAnimationFrame === "backRightSide" ?
-      "backLeftSide" : "backRightSide"
-      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: newFramePosition})
-    }
-
     switch (celiaVerticalPosition) {
       case "top": {
         dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
         helloIntervalID.current = setInterval(() => helloAnimation(), 5000)
-        break
-      }
-      case "transitioning": {
-        climbLadderIntervalRef.current = setInterval(() => climbAnimation(), 400)
         break
       }
       case "bottom": {
@@ -104,10 +94,26 @@ export default function CeliaAnimation() {
 
     return () => {
       clearInterval(helloIntervalID.current)
-      clearInterval(climbLadderIntervalRef.current)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animationIsTransitioning, celiaAnimationFrame, celiaVerticalPosition])
+  }, [animationIsTransitioning, celiaVerticalPosition])
+
+  const climbAnimation = () => {
+    const newFramePosition = celiaAnimationFrame === "backRightSide" ?
+    "backLeftSide" : "backRightSide"
+    dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: newFramePosition})
+  }
+
+  useEffect(() => {
+    if (celiaVerticalPosition === "transitioning") {
+      climbLadderIntervalRef.current = setInterval(() => climbAnimation(), 400)
+    }
+
+    return () => {
+      clearInterval(climbLadderIntervalRef.current)
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [celiaVerticalPosition, celiaAnimationFrame])
 
   useEffect(() => {
     switch (celiaVerticalDirection) {
