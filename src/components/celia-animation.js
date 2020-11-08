@@ -13,7 +13,6 @@ export default function CeliaAnimation() {
     celiaAnimationFrame, 
     celiaVerticalPosition, 
     celiaVerticalDirection,
-    animationIsTransitioning,
     animationMaxHeight,
     activeSlide
   } = state
@@ -96,7 +95,7 @@ export default function CeliaAnimation() {
       clearInterval(helloIntervalID.current)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [animationIsTransitioning, celiaVerticalPosition])
+  }, [celiaVerticalPosition])
 
   const climbAnimation = () => {
     const newFramePosition = celiaAnimationFrame === "backRightSide" ?

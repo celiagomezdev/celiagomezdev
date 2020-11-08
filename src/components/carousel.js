@@ -12,7 +12,6 @@ export default function Carousel() {
   const { 
     activeSlide, 
     celiaAnimationFrame,
-    animationIsTransitioning,
     celiaVerticalPosition 
   } = state
 
@@ -133,7 +132,7 @@ export default function Carousel() {
 
   const slides = displayNumberOfSlides(numberOfSlides)
   const bullets = displayNumberOfBullets(numberOfSlides)
-  const celiaIsOnHero = !animationIsTransitioning && celiaVerticalPosition === "top"
+  const celiaIsOnHero = celiaVerticalPosition === "top"
 
   const leftArrowClass = classNames({
     [styles.arrow]: true,

@@ -7,7 +7,6 @@ const initialState = {
   celiaAnimationFrame: "idle",
   celiaVerticalPosition: "idle",
   celiaVerticalDirection: "idle",
-  animationIsTransitioning: false,
   animationMaxHeight: null,
 }
 
@@ -35,12 +34,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         celiaAnimationFrame: action.celiaAnimationFrame,
-      }
-    }
-    case ACTION_TYPES.SET_ANIMATION_IS_TRANSITIONING: {
-      return {
-        ...state,
-        animationIsTransitioning: action.animationIsTransitioning,
       }
     }
     case ACTION_TYPES.SET_ANIMATION_MAX_HEIGHT: {
