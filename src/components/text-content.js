@@ -23,7 +23,7 @@ export default function TextContent(position) {
           <a href="https://unumotors.com" target="_blank" rel="noreferrer">
             unumotors
           </a>
-          , and since then I’ve been learning from that amazing team and
+          , and during those incredible two years I've been learning from that amazing team and
           enjoying creating useful applications, developing features and solving
           problems. <br /><br />
           Right now I'm open to new opportunities! 
