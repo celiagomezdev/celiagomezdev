@@ -84,7 +84,7 @@ export default function Carousel() {
   },[windowGlobal])
 
   const moveToSlide = position => {
-    // Everytime we move to a different slide, Celia is looking upfront
+    // Everytime we move to a different slide, celia should be frontwards
     dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
     dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: position })
   }
