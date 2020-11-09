@@ -100,9 +100,14 @@ export default function Carousel() {
 
   const displayNumberOfSlides = number => {
     return new Array(number).fill().map(function (slide, index) {
+      const slideClass = classNames({
+        [styles.slide]: true,
+        [styles.mobile]: isMobile,
+      })
+
       return (
         <div 
-          className={styles.slide} 
+          className={slideClass} 
           aria-label={`Slide number ${index}`}
           aria-current={activeSlide === index}
           data-position={index}
