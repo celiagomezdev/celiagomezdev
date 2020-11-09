@@ -15,6 +15,10 @@
   width: 100%;
 }
 
+#slider-container.mobile {
+  background-image: url("../static/img/base-mobile.svg");
+}
+
 #carousel-container button {
   background: none;
   color: inherit;

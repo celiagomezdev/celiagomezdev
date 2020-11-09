@@ -12,7 +12,8 @@ export default function Carousel() {
   const { 
     activeSlide, 
     celiaAnimationFrame,
-    celiaVerticalPosition 
+    celiaVerticalPosition,
+    isMobile
   } = state
 
   const numberOfSlides = 3
@@ -148,7 +149,7 @@ export default function Carousel() {
 
   return (
     <div id={styles.carouselContainer}>
-      <div id={styles.sliderContainer}>
+      <div id={styles.sliderContainer} className={(isMobile) ? styles.mobile : ""}>
         <button aria-label="Go to previous slide" className={leftArrowClass} onClick={() => moveToPrevious()}>
           <img src={arrow} alt="Arrow Left"></img>
         </button>

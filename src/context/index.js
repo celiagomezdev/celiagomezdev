@@ -8,6 +8,7 @@ const initialState = {
   celiaVerticalPosition: "idle",
   celiaVerticalDirection: "idle",
   animationMaxHeight: null,
+  isMobile: null,
 }
 
 const reducer = (state, action) => {
@@ -40,6 +41,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         animationMaxHeight: action.animationMaxHeight,
+      }
+    }
+    case ACTION_TYPES.SET_IS_MOBILE: {
+      return {
+        ...state,
+        isMobile: action.isMobile,
       }
     }
     default: {
