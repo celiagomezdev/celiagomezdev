@@ -12,8 +12,7 @@ export default function Carousel() {
   const { 
     activeSlide, 
     celiaAnimationFrame,
-    celiaVerticalPosition,
-    isMobile
+    celiaVerticalPosition
   } = state
 
   const numberOfSlides = 3
@@ -100,14 +99,10 @@ export default function Carousel() {
 
   const displayNumberOfSlides = number => {
     return new Array(number).fill().map(function (slide, index) {
-      const slideClass = classNames({
-        [styles.slide]: true,
-        [styles.mobile]: isMobile,
-      })
 
       return (
         <div 
-          className={slideClass} 
+          className={styles.slide} 
           aria-label={`Slide number ${index}`}
           aria-current={activeSlide === index}
           data-position={index}
@@ -154,7 +149,7 @@ export default function Carousel() {
 
   return (
     <div id={styles.carouselContainer}>
-      <div id={styles.sliderContainer} className={(isMobile) ? styles.mobile : ""}>
+      <div id={styles.sliderContainer}>
         <button aria-label="Go to previous slide" className={leftArrowClass} onClick={() => moveToPrevious()}>
           <img src={arrow} alt="Arrow Left"></img>
         </button>
