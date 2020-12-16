@@ -1,10 +1,10 @@
-import React from "react"
-import styles from "./footer.module.scss"
-import EmailIcon from "../static/img/mail_icon.svg"
-import GithubIcon from "../static/img/github_icon.svg"
-import LinkedinIcon from "../static/img/linkedin_icon.svg"
-import TwitterIcon from "../static/img/twitter_icon.svg"
-import InstagramIcon from "../static/img/instagram_icon.svg"
+import React from 'react'
+import styles from './footer.module.scss'
+import EmailIcon from '../static/img/mail_icon.svg'
+import GithubIcon from '../static/img/github_icon.svg'
+import LinkedinIcon from '../static/img/linkedin_icon.svg'
+import TwitterIcon from '../static/img/twitter_icon.svg'
+import InstagramIcon from '../static/img/instagram_icon.svg'
 
 export default function Footer() {
   return (

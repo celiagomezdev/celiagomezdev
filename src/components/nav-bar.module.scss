@@ -1,4 +1,4 @@
-@import "../assets/style/breakpoints";
+@import '../assets/style/breakpoints';
 
 #nav-bar {
   z-index: var(--nav-bar);
@@ -10,7 +10,8 @@
   grid-column: 1/13;
 }
 
-h3, ul {
+h3,
+ul {
   margin: 0.5rem 0;
 }
 

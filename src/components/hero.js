@@ -1,5 +1,5 @@
-import React from "react"
-import styles from "./hero.module.scss"
+import React from 'react'
+import styles from './hero.module.scss'
 
 export default function Hero() {
   return (

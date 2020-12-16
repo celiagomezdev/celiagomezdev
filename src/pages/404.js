@@ -1,6 +1,6 @@
-import React from "react"
-import { Link } from "gatsby"
-import styles from "./404.module.scss"
+import React from 'react'
+import { Link } from 'gatsby'
+import styles from './404.module.scss'
 
 export default function NotFoundPage() {
   return (

@@ -1,7 +1,7 @@
-import React, { useState } from "react"
-import styles from "./akira-animation.module.scss"
-import akiraOpenEyes from "../static/img/eyes-open.svg"
-import akiraAngryEyes from "../static/img/eyes-angry.svg"
+import React, { useState } from 'react'
+import styles from './akira-animation.module.scss'
+import akiraOpenEyes from '../static/img/eyes-open.svg'
+import akiraAngryEyes from '../static/img/eyes-angry.svg'
 
 export default function AkiraAnimation() {
   const [openEyesAreShown, setOpenEyesAreShown] = useState(false)
@@ -19,14 +19,16 @@ export default function AkiraAnimation() {
 
   return (
     <div id={styles.akira}>
-      <div className={styles.akiraTappableArea} 
+      <div
+        className={styles.akiraTappableArea}
         onMouseEnter={() => handleMouseEnter()}
         onMouseLeave={() => setOpenEyesAreShown(false)}
-        onClick={()=> handleClick()}>
+        onClick={() => handleClick()}
+      >
         {openEyesAreShown && (
           <div className={`${styles.eye} ${styles.akiraOpenEyes}`}>
             <img src={akiraOpenEyes} alt="Akira Open Eyes"></img>
-           </div>
+          </div>
         )}
         {angryEyesAreShown && (
           <div className={`${styles.eye} ${styles.akiraAngryEyes}`}>

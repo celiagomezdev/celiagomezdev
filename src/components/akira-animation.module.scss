@@ -1,7 +1,7 @@
-@import "../assets/style/breakpoints";
+@import '../assets/style/breakpoints';
 
 #akira {
-  background-image: url("../static/img/akira.svg");
+  background-image: url('../static/img/akira.svg');
   background-repeat: no-repeat;
   background-size: auto 110%;
   background-position: center bottom;
@@ -17,7 +17,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  margin: auto; 
+  margin: auto;
   width: 14rem;
   height: 12rem;
 }
