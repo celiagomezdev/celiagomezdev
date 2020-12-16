@@ -8,7 +8,7 @@ export default function Contact() {
       <div className={`main-section-copy ${styles.sectionCopy}`}>
         <h1>Get in touch</h1>
         <p>
-          Drop me a line if you have any questions or you would like to work
+          Drop me a line if you have any question or you would like to work
           together. It would be great to hear about you!{' '}
           <a href="mailto:celiagomezdev@gmail.com">celiagomezdev@gmail.com</a>
           .
@@ -28,7 +28,7 @@ export default function Contact() {
             target="_blank"
             rel="noreferrer"
           >
-            linkedin
+            linkedIn
           </a>{' '}
           or{' '}
           <a

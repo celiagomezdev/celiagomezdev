@@ -40,8 +40,8 @@ export default function TextContent(position) {
       description: (
         <Fragment>
           <p>
-            In my first two years as developer I've been involved in backend,
-            frontend and mobile projects:
+            In my first two years as a Software Engineer I've been involved in
+            Backend, Frontend and Mobile projects:
           </p>
           <ul>
             <li>
@@ -51,9 +51,9 @@ export default function TextContent(position) {
               </a>{' '}
               (built with Vue.js)
             </li>
-            <li>mobile app for the scooter users (Cordova for iOS/Android)</li>
+            <li>Mobile app for the scooter users (Cordova for iOS/Android)</li>
             <li>unu app backend, build with Node.js</li>
-            <li>personal portfolio using Gatsby and React 16.8</li>
+            <li>Personal portfolio using Gatsby and React 16.8</li>
           </ul>
           <p>
             I’ve been also organiser and teacher assistant of the{' '}
@@ -85,27 +85,28 @@ export default function TextContent(position) {
       title: 'Skill set',
       description: (
         <Fragment>
-          <p>I have knowledge of the following technologies and tools:</p>
+          <p>I've worked with the following technologies and tools:</p>
           <ul>
-            <li>React.js, Vue.js, Vuex, Nuxt, CSS (SCSS), Pug, Webpack.</li>
             <li>
-              Cordova, vanilla JavaScript, npm, Jest (unit tests), MVVM
-              architecture, state management.
+              JavaScript, React.js, Jest, React Testing Library, Hooks, Styled
+              Components (Emotion), Vue.js, Vuex, Vue Router, CSS (SCSS), Pug,
+              Webpack, MVVM, State Management.
             </li>
             <li>
-              Node.js, Express.js, Docker, Kubernettes, Tilt, Ava (unit tests),
-              Terraform, Slack API.
+              Node.js, npm, Express.js, Axios, GraphQL, Apollo, Cordova, Docker,
+              Kubernetes, Tilt, Ava, Terraform, Slack API.
             </li>
             <li>
               Git, GitLab, Sourcetree, Visual Studio Code, Slack, Zeplin, Figma,
-              Agile methodologies (Scrum), Confluence, Jira, Asana.
+              Agile (Scrum), Confluence, Jira, Asana.
             </li>
           </ul>
+          <br />
           <p>
             In addition, I count with other habilities coming from my previous
-            10 years of experience in the advertising field, like communication
-            and organizational skills, care for visual aesthetics,
-            attention-to-detail, customer orientation, empathy.
+            10 years of experience in the field of Marketing and Advertising,
+            like communication and organizational skills, care for visual
+            aesthetics, attention-to-detail, customer orientation, empathy.
           </p>
         </Fragment>
       ),
