@@ -1,12 +1,12 @@
-import React from "react"
-import { ACTION_TYPES } from "../constants/index"
+import React from 'react'
+import { ACTION_TYPES } from '../constants/index'
 
 // TODO: Create enums for strings
 const initialState = {
   activeSlide: 0,
-  celiaAnimationFrame: "idle",
-  celiaVerticalPosition: "idle",
-  celiaVerticalDirection: "idle",
+  celiaAnimationFrame: 'idle',
+  celiaVerticalPosition: 'idle',
+  celiaVerticalDirection: 'idle',
   animationMaxHeight: null,
   isMobile: null,
 }

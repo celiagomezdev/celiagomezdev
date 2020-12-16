@@ -1,20 +1,20 @@
-import React, { useRef, useEffect, useContext } from "react"
-import styles from "./celia-animation.module.scss"
-import celiaFramesImage from "../static/img/celia-frames.png"
-import { Context } from "../context"
-import { ACTION_TYPES } from "../constants/index"
+import React, { useRef, useEffect, useContext } from 'react'
+import styles from './celia-animation.module.scss'
+import celiaFramesImage from '../static/img/celia-frames.png'
+import { Context } from '../context'
+import { ACTION_TYPES } from '../constants/index'
 
 // TODO: clean animation logics, consider moving them to a helpers/hooks file.
 // TODO: Check exhaustive deps issue
 export default function CeliaAnimation() {
   const [state, dispatch] = useContext(Context)
 
-  const { 
-    celiaAnimationFrame, 
-    celiaVerticalPosition, 
+  const {
+    celiaAnimationFrame,
+    celiaVerticalPosition,
     celiaVerticalDirection,
     animationMaxHeight,
-    activeSlide
+    activeSlide,
   } = state
 
   const celiaAnimationRef = useRef()
@@ -36,55 +36,90 @@ export default function CeliaAnimation() {
     backTwo: -74.5,
     backThree: -90.3,
     sitOne: -109.1,
-    sitTwo: -128
+    sitTwo: -128,
   }
 
   useEffect(() => {
     // Set initial component state on first render
-    dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
-    dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: "top"})
+    dispatch({
+      type: ACTION_TYPES.SET_ANIMATION_FRAME,
+      celiaAnimationFrame: 'front',
+    })
+    dispatch({
+      type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
+      celiaVerticalPosition: 'top',
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
-    const newPosition = celiaVerticalDirection === "toBottom" ? "bottom" : "top"
+    const newPosition = celiaVerticalDirection === 'toBottom' ? 'bottom' : 'top'
     if (currentPosition.current === newPosition) return
     currentPosition.current = newPosition
 
-    celiaAnimationRef.current.addEventListener("transitionstart", () => {
+    celiaAnimationRef.current.addEventListener('transitionstart', () => {
       // We make sure that celia is backwards when the transition starts
-      dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "backRightSide"})
-      dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: "transitioning"})
+      dispatch({
+        type: ACTION_TYPES.SET_ANIMATION_FRAME,
+        celiaAnimationFrame: 'backRightSide',
+      })
+      dispatch({
+        type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
+        celiaVerticalPosition: 'transitioning',
+      })
     })
 
-    celiaAnimationRef.current.addEventListener("transitionend", () => {
-      dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION, celiaVerticalPosition: currentPosition.current})
+    celiaAnimationRef.current.addEventListener('transitionend', () => {
+      dispatch({
+        type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
+        celiaVerticalPosition: currentPosition.current,
+      })
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [celiaVerticalDirection])
 
   useEffect(() => {
     // Fallback in case we receive idle
-    const newFrame = celiaAnimationFrame === "idle" ? "front" : celiaAnimationFrame
-    celiaFramesRef.current.style.setProperty('--animation-frame-position', 
-        `${celiaFramesPosition[newFrame]}rem`)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    const newFrame =
+      celiaAnimationFrame === 'idle' ? 'front' : celiaAnimationFrame
+    celiaFramesRef.current.style.setProperty(
+      '--animation-frame-position',
+      `${celiaFramesPosition[newFrame]}rem`
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [celiaAnimationFrame])
 
   const helloAnimation = () => {
-    dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "frontHello"})
-    setTimeout(() => dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"}), 1000)
+    dispatch({
+      type: ACTION_TYPES.SET_ANIMATION_FRAME,
+      celiaAnimationFrame: 'frontHello',
+    })
+    setTimeout(
+      () =>
+        dispatch({
+          type: ACTION_TYPES.SET_ANIMATION_FRAME,
+          celiaAnimationFrame: 'front',
+        }),
+      1000
+    )
   }
 
   useEffect(() => {
     switch (celiaVerticalPosition) {
-      case "top": {
-        dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
+      case 'top': {
+        dispatch({
+          type: ACTION_TYPES.SET_ANIMATION_FRAME,
+          celiaAnimationFrame: 'front',
+        })
         helloIntervalID.current = setInterval(() => helloAnimation(), 5000)
         break
       }
-      case "bottom": {
-        if (activeSlide === 0) dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: "front"})
+      case 'bottom': {
+        if (activeSlide === 0)
+          dispatch({
+            type: ACTION_TYPES.SET_ANIMATION_FRAME,
+            celiaAnimationFrame: 'front',
+          })
         break
       }
       default:
@@ -98,32 +133,41 @@ export default function CeliaAnimation() {
   }, [celiaVerticalPosition])
 
   const climbAnimation = () => {
-    const newFramePosition = celiaAnimationFrame === "backRightSide" ?
-    "backLeftSide" : "backRightSide"
-    dispatch({ type: ACTION_TYPES.SET_ANIMATION_FRAME, celiaAnimationFrame: newFramePosition})
+    const newFramePosition =
+      celiaAnimationFrame === 'backRightSide' ? 'backLeftSide' : 'backRightSide'
+    dispatch({
+      type: ACTION_TYPES.SET_ANIMATION_FRAME,
+      celiaAnimationFrame: newFramePosition,
+    })
   }
 
   useEffect(() => {
-    if (celiaVerticalPosition === "transitioning") {
+    if (celiaVerticalPosition === 'transitioning') {
       climbLadderIntervalRef.current = setInterval(() => climbAnimation(), 400)
     }
 
     return () => {
       clearInterval(climbLadderIntervalRef.current)
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [celiaVerticalPosition, celiaAnimationFrame])
 
   useEffect(() => {
     switch (celiaVerticalDirection) {
-      case "toTop": {
+      case 'toTop': {
         if (windowGlobal.scrollY === 0) return
-        celiaAnimationRef.current.style.setProperty('transform', `translateY(0)`)
+        celiaAnimationRef.current.style.setProperty(
+          'transform',
+          `translateY(0)`
+        )
         break
       }
-      case "toBottom": {
+      case 'toBottom': {
         // TODO: find a better way to set the maximum height without adding those extra 2px
-        celiaAnimationRef.current.style.setProperty('transform', `translateY(${animationMaxHeight + 2}px)`)
+        celiaAnimationRef.current.style.setProperty(
+          'transform',
+          `translateY(${animationMaxHeight + 2}px)`
+        )
         break
       }
       default:
@@ -138,19 +182,26 @@ export default function CeliaAnimation() {
       the middle section or we are not in the initial slide */
       if (windowGlobal.scrollY > 500 || activeSlide !== 0) return
       const isGoingBottom = previousScroll < windowGlobal.scrollY
-      animationGoTo(isGoingBottom ? "toBottom" : "toTop")
+      animationGoTo(isGoingBottom ? 'toBottom' : 'toTop')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowGlobal, activeSlide, previousScroll])
 
-  const animationGoTo = (direction) => {
+  const animationGoTo = direction => {
     if (currentDirection.current === direction) return
     currentDirection.current = direction
-    dispatch({ type: ACTION_TYPES.SET_CELIA_VERTICAL_DIRECTION, celiaVerticalDirection: direction})
+    dispatch({
+      type: ACTION_TYPES.SET_CELIA_VERTICAL_DIRECTION,
+      celiaVerticalDirection: direction,
+    })
   }
 
-  return(
-    <div id={styles.celiaAnimation} className="content grid" ref={celiaAnimationRef}>
+  return (
+    <div
+      id={styles.celiaAnimation}
+      className="content grid"
+      ref={celiaAnimationRef}
+    >
       <div className={styles.celiaContainer}>
         <div className={styles.celia} ref={celiaFramesRef}>
           <img src={celiaFramesImage} alt="Celia Animation"></img>

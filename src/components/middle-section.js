@@ -1,7 +1,7 @@
-import React from "react"
-import styles from "./middle-section.module.scss"
-import Carousel from "./carousel"
-import TextBox from "./text-box"
+import React from 'react'
+import styles from './middle-section.module.scss'
+import Carousel from './carousel'
+import TextBox from './text-box'
 
 export default function MiddleSection() {
   return (

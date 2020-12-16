@@ -1,7 +1,7 @@
-import React, { useContext } from "react"
-import styles from "./text-box.module.scss"
-import TextContent from "./text-content"
-import { Context } from "../context"
+import React, { useContext } from 'react'
+import styles from './text-box.module.scss'
+import TextContent from './text-content'
+import { Context } from '../context'
 
 export default function TextBox() {
   // Access the activeSlide state value

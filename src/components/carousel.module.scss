@@ -1,4 +1,4 @@
-@import "../assets/style/breakpoints";
+@import '../assets/style/breakpoints';
 
 #carousel-container {
   width: 100%;
@@ -7,7 +7,7 @@
 }
 
 #slider-container {
-  background-image: url("../static/img/base.svg");
+  background-image: url('../static/img/base.svg');
   background-repeat: no-repeat;
   background-size: auto 70%;
   background-position: center bottom;
@@ -58,7 +58,7 @@
   transition: transform 0.7s ease-in-out;
 }
 
-.slide  {
+.slide {
   width: 100%;
   height: 100%;
   flex-shrink: 0;
@@ -67,19 +67,19 @@
   background-position: center bottom;
 }
 
-.slide[data-position="0"]{
-  background-image: url("../static/img/ladder.svg");
+.slide[data-position='0'] {
+  background-image: url('../static/img/ladder.svg');
 }
 
-.slide[data-position="1"]{
-  background-image: url("../static/img/projects.svg");
+.slide[data-position='1'] {
+  background-image: url('../static/img/projects.svg');
 }
 
-.slide[data-position="2"]{
-  background-image: url("../static/img/skills.svg");
+.slide[data-position='2'] {
+  background-image: url('../static/img/skills.svg');
 }
 
-#bullets-menu-container{
+#bullets-menu-container {
   height: 3rem;
   display: flex;
   justify-content: center;
@@ -107,14 +107,14 @@
 
 @include mobile {
   #slider-container {
-    background-image: url("../static/img/base-mobile.svg");
+    background-image: url('../static/img/base-mobile.svg');
   }
 
-  .slide[data-position="1"] {
-    background-image: url("../static/img/projects-mobile.svg");
+  .slide[data-position='1'] {
+    background-image: url('../static/img/projects-mobile.svg');
   }
 
-  .slide[data-position="2"] {
-    background-image: url("../static/img/skills-mobile.svg");
+  .slide[data-position='2'] {
+    background-image: url('../static/img/skills-mobile.svg');
   }
 }
