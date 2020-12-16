@@ -1,11 +1,11 @@
 # celiagomezdev
 
-Personal website built with Gatsby. 🚧 under construction 🚧
-
+Personal website built with Gatsby and React. 🚧 Under construction 🚧.
 
 ## 🚀 Run it locally
 
-First install the Gatsby CLI
+First install the Gatsby CLI:
+
 ```
 npm install -g gatsby-cli
 ```
@@ -28,6 +28,7 @@ http://localhost:8000/
 ## 🕵️‍♀️ Test
 
 Just run:
+
 ```
 npm test
 ```
