@@ -4,7 +4,7 @@ import celiaFramesImage from '../static/img/celia-frames.png'
 import { Context } from '../context'
 import { ACTION_TYPES } from '../constants/index'
 
-// TODO: clean animation logics, consider moving them to a helpers/hooks file.
+// TODO: clean animation logics, consider moving them to actions/custom hooks file.
 // TODO: Check exhaustive deps issue
 export default function CeliaAnimation() {
   const [state, dispatch] = useContext(Context)
