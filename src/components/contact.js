@@ -29,8 +29,8 @@ export default function Contact() {
             rel="noreferrer"
           >
             linkedIn
-          </a>{' '}
-          or{' '}
+          </a>
+          ,{' '}
           <a
             href="https://www.instagram.com/celiagomezdev"
             target="_blank"
@@ -38,7 +38,16 @@ export default function Contact() {
           >
             instagram
           </a>{' '}
-          (personal analog pictures) to know a little bit more about me.
+          or{' '}
+          <a
+            href="https://cargocollective.com/celiagomezdev"
+            target="_blank"
+            rel="noreferrer"
+          >
+            cargo
+          </a>{' '}
+          (these last two with my personal analog pictures) to know a little bit
+          more about me.
           <br />
           <br />
           See you soon! 🙋🏻‍♀️
