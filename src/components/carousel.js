@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import styles from './carousel.module.scss'
 import arrow from '../static/img/arrow.svg'
-import { Context } from '../context'
+import { Context, actions } from '../context'
 import { ACTION_TYPES } from '../constants/index'
 
 export default function Carousel() {
@@ -94,21 +94,12 @@ export default function Carousel() {
     }
   }, [windowGlobal])
 
-  const moveToSlide = position => {
-    // Everytime we move to a different slide, celia should be frontwards
-    dispatch({
-      type: ACTION_TYPES.SET_ANIMATION_FRAME,
-      celiaAnimationFrame: 'front',
-    })
-    dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: position })
-  }
-
   const moveToNext = () => {
-    moveToSlide(activeSlide + 1)
+    actions.moveToSlide(activeSlide + 1, state, dispatch)
   }
 
   const moveToPrevious = () => {
-    moveToSlide(activeSlide - 1)
+    actions.moveToSlide(activeSlide - 1, state, dispatch)
   }
 
   const displayNumberOfSlides = number => {
@@ -138,7 +129,7 @@ export default function Carousel() {
           className={setBulletClass(index)}
           key={index}
           aria-label={`Go to slide ${index}`}
-          onClick={() => moveToSlide(index)}
+          onClick={() => actions.moveToSlide(index, state, dispatch)}
         ></span>
       )
     })

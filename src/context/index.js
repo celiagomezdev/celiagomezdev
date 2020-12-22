@@ -1,4 +1,5 @@
 import React from 'react'
+import actions from './actions'
 import { ACTION_TYPES } from '../constants/index'
 
 // TODO: Create enums for strings
@@ -65,4 +66,4 @@ const Store = ({ children }) => {
 
 const Context = React.createContext(initialState)
 
-export { Store, Context }
+export { Store, Context, actions }
