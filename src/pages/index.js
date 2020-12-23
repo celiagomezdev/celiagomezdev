@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react'
+import { Helmet } from 'react-helmet'
 import Hero from '../components/hero'
 import CeliaAnimation from '../components/celia-animation'
 import MiddleSection from '../components/middle-section'
@@ -19,6 +20,15 @@ export default function HomePage() {
 
   return (
     <main id="home-page">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>celiagomezdev</title>
+        <meta
+          name="description"
+          content="Celia Gómez de Villavedón Pedrosa personal website"
+        ></meta>
+        <meta name="keywords" content="HTML, CSS, JavaScript, React"></meta>
+      </Helmet>
       <Hero />
       <CeliaAnimation />
       <MiddleSection />
