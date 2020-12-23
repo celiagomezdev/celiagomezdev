@@ -14,7 +14,11 @@ export default function HamburgerMenu() {
         onClick={() => setShouldShowMenu(!shouldShowMenu)}
       ></div>
       {shouldShowMenu && (
-        <nav id={styles.hamburgerMenu}>
+        <nav
+          tabIndex="1"
+          id={styles.hamburgerMenu}
+          onBlur={() => setShouldShowMenu(false)}
+        >
           <ul>
             <li>
               <Link
