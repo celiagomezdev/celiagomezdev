@@ -18,6 +18,7 @@ ul {
 .logo {
   grid-column: 1/6;
   justify-self: start;
+  font-size: 1.1rem;
 }
 
 .menu {
@@ -42,6 +43,7 @@ ul {
 #nav-bar li {
   display: inline-block;
   margin-left: 1rem;
+  font-size: 1rem;
 }
 
 @include tablet {
