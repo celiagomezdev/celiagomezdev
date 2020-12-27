@@ -5,7 +5,7 @@ import AkiraAnimation from './akira-animation'
 export default function Contact() {
   return (
     <section id="contact" className={`content grid`}>
-      <div className={`main-section-copy ${styles.sectionCopy}`}>
+      <div className={styles.sectionCopy}>
         <h1>Get in touch</h1>
         <p>
           Drop me a line if you have any question or you would like to work
