@@ -2,12 +2,14 @@
 
 Personal website built with Gatsby and React. 🚧 Under construction 🚧.
 
+&nbsp;
 ## 🚀 Current deployed version
 
 See the live version of the website in this domain:
 
-celiagomezdev.com
+[celiagomezdev.com](https://www.celiagomezdev.com/)
 
+&nbsp;
 ## 💻 Run it locally
 
 First install the Gatsby CLI:
@@ -31,6 +33,7 @@ You can now view the local master version of the website in the browser:
 http://localhost:8000/
 ```
 
+&nbsp;
 ## 🕵️‍♀️ Test
 
 Just run:
@@ -39,6 +42,7 @@ Just run:
 npm test
 ```
 
+&nbsp;
 ## 🛠️ To Do
 
 - Use enum constants instead of strings.
