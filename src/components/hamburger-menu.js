@@ -7,12 +7,13 @@ export default function HamburgerMenu() {
   const [shouldShowMenu, setShouldShowMenu] = useState(false)
   const [state, dispatch] = useContext(Context)
 
+  const showMenu = () => setShouldShowMenu(!shouldShowMenu)
+  const moveCeliaToHome = () => actions.moveCeliaToHome(0, state, dispatch)
+  const moveToSlide = slide => () => actions.moveToSlide(slide, state, dispatch)
+
   return (
     <div id={styles.hamburgerMenuContainer}>
-      <div
-        id={styles.hamburgerMenuIcon}
-        onClick={() => setShouldShowMenu(!shouldShowMenu)}
-      ></div>
+      <div id={styles.hamburgerMenuIcon} onClick={showMenu}></div>
       {shouldShowMenu && (
         <nav
           tabIndex="1"
@@ -21,17 +22,14 @@ export default function HamburgerMenu() {
         >
           <ul>
             <li>
-              <Link
-                to="/"
-                onClick={() => actions.moveCeliaToHome(0, state, dispatch)}
-              >
+              <Link to="/" onClick={moveCeliaToHome}>
                 Home
               </Link>
             </li>
             <li>
               <Link
                 to="/#middle-section-module--middle-section--8npu3"
-                onClick={() => actions.moveToSlide(0, state, dispatch)}
+                onClick={moveToSlide(0)}
               >
                 About
               </Link>
@@ -39,7 +37,7 @@ export default function HamburgerMenu() {
             <li>
               <Link
                 to="/#middle-section-module--middle-section--8npu3"
-                onClick={() => actions.moveToSlide(1, state, dispatch)}
+                onClick={moveToSlide(1)}
               >
                 Projects
               </Link>
@@ -47,7 +45,7 @@ export default function HamburgerMenu() {
             <li>
               <Link
                 to="/#middle-section-module--middle-section--8npu3"
-                onClick={() => actions.moveToSlide(2, state, dispatch)}
+                onClick={moveToSlide(2)}
               >
                 Skills
               </Link>

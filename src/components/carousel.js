@@ -94,13 +94,12 @@ export default function Carousel() {
     }
   }, [windowGlobal])
 
-  const moveToNext = () => {
-    actions.moveToSlide(activeSlide + 1, state, dispatch)
-  }
+  const moveToNext = () => actions.moveToSlide(activeSlide + 1, state, dispatch)
 
-  const moveToPrevious = () => {
+  const moveToPrevious = () =>
     actions.moveToSlide(activeSlide - 1, state, dispatch)
-  }
+
+  const moveToSlide = index => () => actions.moveToSlide(index, state, dispatch)
 
   const displayNumberOfSlides = number => {
     return new Array(number).fill().map(function (slide, index) {
@@ -129,7 +128,7 @@ export default function Carousel() {
           className={setBulletClass(index)}
           key={index}
           aria-label={`Go to slide ${index}`}
-          onClick={() => actions.moveToSlide(index, state, dispatch)}
+          onClick={moveToSlide(index, state, dispatch)}
         ></span>
       )
     })
@@ -157,7 +156,7 @@ export default function Carousel() {
         <button
           aria-label="Go to previous slide"
           className={leftArrowClass}
-          onClick={() => moveToPrevious()}
+          onClick={moveToPrevious}
         >
           <img src={arrow} alt="Arrow Left"></img>
         </button>
@@ -167,7 +166,7 @@ export default function Carousel() {
         <button
           aria-label="Go to next slide"
           className={rightArrowClass}
-          onClick={() => moveToNext()}
+          onClick={moveToNext}
         >
           <img src={arrow} alt="Arrow Right"></img>
         </button>

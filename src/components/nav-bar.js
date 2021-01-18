@@ -8,13 +8,13 @@ export default function NavBar() {
   const [state, dispatch] = useContext(Context)
   const { isMobile } = state
 
+  const moveCeliaToHome = () => actions.moveCeliaToHome(0, state, dispatch)
+  const moveToSlide = slide => () => actions.moveToSlide(slide, state, dispatch)
+
   return (
     <header id={styles.navBar} className={`outer-content grid`}>
       <h3 className={styles.logo}>
-        <Link
-          to="/"
-          onClick={() => actions.moveCeliaToHome(0, state, dispatch)}
-        >
+        <Link to="/" onClick={moveCeliaToHome}>
           celia gómez de villavedón pedrosa
         </Link>
       </h3>
@@ -22,17 +22,14 @@ export default function NavBar() {
       {!isMobile && (
         <ul className={styles.menu}>
           <li>
-            <Link
-              to="/"
-              onClick={() => actions.moveCeliaToHome(0, state, dispatch)}
-            >
+            <Link to="/" onClick={moveCeliaToHome}>
               Home
             </Link>
           </li>
           <li>
             <Link
               to="/#middle-section-module--middle-section--8npu3"
-              onClick={() => actions.moveToSlide(0, state, dispatch)}
+              onClick={moveToSlide(0)}
             >
               About
             </Link>
@@ -40,7 +37,7 @@ export default function NavBar() {
           <li>
             <Link
               to="/#middle-section-module--middle-section--8npu3"
-              onClick={() => actions.moveToSlide(1, state, dispatch)}
+              onClick={moveToSlide(1)}
             >
               Projects
             </Link>
@@ -48,7 +45,7 @@ export default function NavBar() {
           <li>
             <Link
               to="/#middle-section-module--middle-section--8npu3"
-              onClick={() => actions.moveToSlide(2, state, dispatch)}
+              onClick={moveToSlide(2)}
             >
               Skills
             </Link>
