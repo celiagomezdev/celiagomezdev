@@ -4,12 +4,12 @@ export default {
   moveToSlide(slide, state, dispatch) {
     if (
       state.celiaVerticalPosition === 'bottom' ||
-      state.celiaVerticalPosition === 'idle'
+      state.celiaVerticalPosition === 'IDLE'
     ) {
       // Everytime we move to a different slide, celia should be frontwards
       dispatch({
         type: ACTION_TYPES.SET_ANIMATION_FRAME,
-        celiaAnimationFrame: 'front',
+        celiaAnimationFrame: 'FRONT',
       })
       dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: slide })
     } else {
