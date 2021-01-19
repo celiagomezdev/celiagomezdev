@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useContext } from 'react'
 import styles from './celia-animation.module.scss'
 import celiaFramesImage from '../static/img/celia-frames.png'
 import { Context } from '../context'
-import { ACTION_TYPES } from '../constants/index'
+import { ACTION_TYPES, CELIA_FRAMES_POSITION } from '../constants/index'
 
 // TODO: clean animation logics, consider moving them to actions/custom hooks file.
 // TODO: Check exhaustive deps issue
@@ -27,23 +27,11 @@ export default function CeliaAnimation() {
   const windowGlobal = typeof window !== 'undefined' && window
   const previousScroll = windowGlobal.scrollY
 
-  const celiaFramesPosition = {
-    front: 4,
-    frontHello: -10.65,
-    backOne: -27.4,
-    backRightSide: -42.5,
-    backLeftSide: -58.7,
-    backTwo: -74.5,
-    backThree: -90.3,
-    sitOne: -109.1,
-    sitTwo: -128,
-  }
-
   useEffect(() => {
     // Set initial component state on first render
     dispatch({
       type: ACTION_TYPES.SET_ANIMATION_FRAME,
-      celiaAnimationFrame: 'front',
+      celiaAnimationFrame: 'FRONT',
     })
     dispatch({
       type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
@@ -61,7 +49,7 @@ export default function CeliaAnimation() {
       // We make sure that celia is backwards when the transition starts
       dispatch({
         type: ACTION_TYPES.SET_ANIMATION_FRAME,
-        celiaAnimationFrame: 'backRightSide',
+        celiaAnimationFrame: 'BACK_RIGHT_SIDE',
       })
       dispatch({
         type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
@@ -79,12 +67,12 @@ export default function CeliaAnimation() {
   }, [celiaVerticalDirection])
 
   useEffect(() => {
-    // Fallback in case we receive idle
+    // Fallback in case we receive IDLE
     const newFrame =
-      celiaAnimationFrame === 'idle' ? 'front' : celiaAnimationFrame
+      celiaAnimationFrame === 'IDLE' ? 'FRONT' : celiaAnimationFrame
     celiaFramesRef.current.style.setProperty(
       '--animation-frame-position',
-      `${celiaFramesPosition[newFrame]}rem`
+      `${CELIA_FRAMES_POSITION[newFrame]}rem`
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [celiaAnimationFrame])
@@ -92,13 +80,13 @@ export default function CeliaAnimation() {
   const helloAnimation = () => {
     dispatch({
       type: ACTION_TYPES.SET_ANIMATION_FRAME,
-      celiaAnimationFrame: 'frontHello',
+      celiaAnimationFrame: 'FRONT_HELLO',
     })
     setTimeout(
       () =>
         dispatch({
           type: ACTION_TYPES.SET_ANIMATION_FRAME,
-          celiaAnimationFrame: 'front',
+          celiaAnimationFrame: 'FRONT',
         }),
       1000
     )
@@ -109,7 +97,7 @@ export default function CeliaAnimation() {
       case 'top': {
         dispatch({
           type: ACTION_TYPES.SET_ANIMATION_FRAME,
-          celiaAnimationFrame: 'front',
+          celiaAnimationFrame: 'FRONT',
         })
         helloIntervalID.current = setInterval(() => helloAnimation(), 5000)
         break
@@ -118,7 +106,7 @@ export default function CeliaAnimation() {
         if (activeSlide === 0)
           dispatch({
             type: ACTION_TYPES.SET_ANIMATION_FRAME,
-            celiaAnimationFrame: 'front',
+            celiaAnimationFrame: 'FRONT',
           })
         break
       }
@@ -134,7 +122,9 @@ export default function CeliaAnimation() {
 
   const climbAnimation = () => {
     const newFramePosition =
-      celiaAnimationFrame === 'backRightSide' ? 'backLeftSide' : 'backRightSide'
+      celiaAnimationFrame === 'BACK_RIGHT_SIDE'
+        ? 'BACK_LEFT_SIDE'
+        : 'BACK_RIGHT_SIDE'
     dispatch({
       type: ACTION_TYPES.SET_ANIMATION_FRAME,
       celiaAnimationFrame: newFramePosition,

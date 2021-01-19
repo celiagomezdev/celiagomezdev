@@ -49,7 +49,7 @@ export default function Carousel() {
   useEffect(() => {
     const showAnimation = () => {
       const newFramePosition =
-        celiaAnimationFrame === 'backTwo' ? 'backThree' : 'backTwo'
+        celiaAnimationFrame === 'BACK_TWO' ? 'BACK_THREE' : 'BACK_TWO'
       dispatch({
         type: ACTION_TYPES.SET_ANIMATION_FRAME,
         celiaAnimationFrame: newFramePosition,
@@ -58,7 +58,7 @@ export default function Carousel() {
 
     const typeAnimation = () => {
       const newFramePosition =
-        celiaAnimationFrame === 'sitOne' ? 'sitTwo' : 'sitOne'
+        celiaAnimationFrame === 'SIT_ONE' ? 'SIT_TWO' : 'SIT_ONE'
       dispatch({
         type: ACTION_TYPES.SET_ANIMATION_FRAME,
         celiaAnimationFrame: newFramePosition,
