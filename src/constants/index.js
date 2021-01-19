@@ -36,4 +36,9 @@ module.exports = {
     TRANSITIONING: 'TRANSITIONING',
     BOTTOM: 'BOTTOM',
   },
+  CELIA_VERTICAL_DIRECTION: {
+    IDLE: 'IDLE',
+    TO_TOP: 'TO_TOP',
+    TO_BOTTOM: 'TO_BOTTOM',
+  },
 }
