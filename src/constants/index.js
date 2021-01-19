@@ -30,4 +30,10 @@ module.exports = {
     SIT_ONE: 'SIT_ONE',
     SIT_TWO: 'SIT_TWO',
   },
+  CELIA_VERTICAL_POSITION: {
+    IDLE: 'IDLE',
+    TOP: 'TOP',
+    TRANSITIONING: 'TRANSITIONING',
+    BOTTOM: 'BOTTOM',
+  },
 }

@@ -1,12 +1,16 @@
 import React from 'react'
 import actions from './actions'
-import { ACTION_TYPES, CELIA_ANIMATION_FRAMES } from '../constants/index'
+import {
+  ACTION_TYPES,
+  CELIA_ANIMATION_FRAMES,
+  CELIA_VERTICAL_POSITION,
+} from '../constants/index'
 
 // TODO: Create enums for strings
 const initialState = {
   activeSlide: 0,
   celiaAnimationFrame: CELIA_ANIMATION_FRAMES.IDLE,
-  celiaVerticalPosition: 'IDLE',
+  celiaVerticalPosition: CELIA_VERTICAL_POSITION.IDLE,
   celiaVerticalDirection: 'IDLE',
   animationMaxHeight: null,
   isMobile: null,
