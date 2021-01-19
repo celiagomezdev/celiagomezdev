@@ -6,8 +6,8 @@ import { ACTION_TYPES, CELIA_ANIMATION_FRAMES } from '../constants/index'
 const initialState = {
   activeSlide: 0,
   celiaAnimationFrame: CELIA_ANIMATION_FRAMES.IDLE,
-  celiaVerticalPosition: CELIA_ANIMATION_FRAMES.IDLE,
-  celiaVerticalDirection: CELIA_ANIMATION_FRAMES.IDLE,
+  celiaVerticalPosition: 'IDLE',
+  celiaVerticalDirection: 'IDLE',
   animationMaxHeight: null,
   isMobile: null,
 }
