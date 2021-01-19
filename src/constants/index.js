@@ -18,4 +18,16 @@ module.exports = {
     SIT_ONE: -109.1,
     SIT_TWO: -128,
   },
+  CELIA_ANIMATION_FRAMES: {
+    IDLE: 'IDLE',
+    FRONT: 'FRONT',
+    FRONT_HELLO: 'FRONT_HELLO',
+    BACK_ONE: 'BACK_ONE',
+    BACK_RIGHT_SIDE: 'BACK_RIGHT_SIDE',
+    BACK_LEFT_SIDE: 'BACK_LEFT_SIDE',
+    BACK_TWO: 'BACK_TWO',
+    BACK_THREE: 'BACK_THREE',
+    SIT_ONE: 'SIT_ONE',
+    SIT_TWO: 'SIT_TWO',
+  },
 }
