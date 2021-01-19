@@ -4,14 +4,14 @@ import {
   ACTION_TYPES,
   CELIA_ANIMATION_FRAMES,
   CELIA_VERTICAL_POSITION,
+  CELIA_VERTICAL_DIRECTION,
 } from '../constants/index'
 
-// TODO: Create enums for strings
 const initialState = {
   activeSlide: 0,
   celiaAnimationFrame: CELIA_ANIMATION_FRAMES.IDLE,
   celiaVerticalPosition: CELIA_VERTICAL_POSITION.IDLE,
-  celiaVerticalDirection: 'IDLE',
+  celiaVerticalDirection: CELIA_VERTICAL_DIRECTION.IDLE,
   animationMaxHeight: null,
   isMobile: null,
 }

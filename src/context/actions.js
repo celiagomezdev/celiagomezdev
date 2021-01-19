@@ -2,6 +2,7 @@ import {
   ACTION_TYPES,
   CELIA_ANIMATION_FRAMES,
   CELIA_VERTICAL_POSITION,
+  CELIA_VERTICAL_DIRECTION,
 } from '../constants/index'
 
 export default {
@@ -30,7 +31,7 @@ export default {
     this.moveToSlide(slide, state, dispatch)
     dispatch({
       type: ACTION_TYPES.SET_CELIA_VERTICAL_DIRECTION,
-      celiaVerticalDirection: 'toTop',
+      celiaVerticalDirection: CELIA_VERTICAL_DIRECTION.TO_TOP,
     })
   },
 }

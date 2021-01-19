@@ -7,6 +7,7 @@ import {
   CELIA_FRAMES_POSITION,
   CELIA_ANIMATION_FRAMES,
   CELIA_VERTICAL_POSITION,
+  CELIA_VERTICAL_DIRECTION,
 } from '../constants/index'
 
 // TODO: clean animation logics, consider moving them to actions/custom hooks file.
@@ -47,7 +48,7 @@ export default function CeliaAnimation() {
 
   useEffect(() => {
     const newPosition =
-      celiaVerticalDirection === 'toBottom'
+      celiaVerticalDirection === CELIA_VERTICAL_DIRECTION.TO_BOTTOM
         ? CELIA_VERTICAL_POSITION.BOTTOM
         : CELIA_VERTICAL_POSITION.TOP
     if (currentPosition.current === newPosition) return
@@ -154,7 +155,7 @@ export default function CeliaAnimation() {
 
   useEffect(() => {
     switch (celiaVerticalDirection) {
-      case 'toTop': {
+      case CELIA_VERTICAL_DIRECTION.TO_TOP: {
         if (windowGlobal.scrollY === 0) return
         celiaAnimationRef.current.style.setProperty(
           'transform',
@@ -162,7 +163,7 @@ export default function CeliaAnimation() {
         )
         break
       }
-      case 'toBottom': {
+      case CELIA_VERTICAL_DIRECTION.TO_BOTTOM: {
         // TODO: find a better way to set the maximum height without adding those extra 2px
         celiaAnimationRef.current.style.setProperty(
           'transform',
@@ -182,7 +183,11 @@ export default function CeliaAnimation() {
       the middle section or we are not in the initial slide */
       if (windowGlobal.scrollY > 500 || activeSlide !== 0) return
       const isGoingBottom = previousScroll < windowGlobal.scrollY
-      animationGoTo(isGoingBottom ? 'toBottom' : 'toTop')
+      animationGoTo(
+        isGoingBottom
+          ? CELIA_VERTICAL_DIRECTION.TO_BOTTOM
+          : CELIA_VERTICAL_DIRECTION.TO_TOP
+      )
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowGlobal, activeSlide, previousScroll])
