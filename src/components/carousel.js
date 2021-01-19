@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import styles from './carousel.module.scss'
 import arrow from '../static/img/arrow.svg'
 import { Context, actions } from '../context'
-import { ACTION_TYPES } from '../constants/index'
+import { ACTION_TYPES, CELIA_VERTICAL_POSITION } from '../constants/index'
 
 export default function Carousel() {
   const [sliderWidth, setSliderWidth] = useState()
@@ -136,7 +136,7 @@ export default function Carousel() {
 
   const slides = displayNumberOfSlides(numberOfSlides)
   const bullets = displayNumberOfBullets(numberOfSlides)
-  const celiaIsOnHero = celiaVerticalPosition === 'top'
+  const celiaIsOnHero = celiaVerticalPosition === CELIA_VERTICAL_POSITION.TOP
 
   const leftArrowClass = classNames({
     [styles.arrow]: true,

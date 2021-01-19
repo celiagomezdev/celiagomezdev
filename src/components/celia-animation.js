@@ -6,6 +6,7 @@ import {
   ACTION_TYPES,
   CELIA_FRAMES_POSITION,
   CELIA_ANIMATION_FRAMES,
+  CELIA_VERTICAL_POSITION,
 } from '../constants/index'
 
 // TODO: clean animation logics, consider moving them to actions/custom hooks file.
@@ -39,13 +40,16 @@ export default function CeliaAnimation() {
     })
     dispatch({
       type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
-      celiaVerticalPosition: 'top',
+      celiaVerticalPosition: CELIA_VERTICAL_POSITION.TOP,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
-    const newPosition = celiaVerticalDirection === 'toBottom' ? 'bottom' : 'top'
+    const newPosition =
+      celiaVerticalDirection === 'toBottom'
+        ? CELIA_VERTICAL_POSITION.BOTTOM
+        : CELIA_VERTICAL_POSITION.TOP
     if (currentPosition.current === newPosition) return
     currentPosition.current = newPosition
 
@@ -57,7 +61,7 @@ export default function CeliaAnimation() {
       })
       dispatch({
         type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
-        celiaVerticalPosition: 'transitioning',
+        celiaVerticalPosition: CELIA_VERTICAL_POSITION.TRANSITIONING,
       })
     })
 
@@ -100,7 +104,7 @@ export default function CeliaAnimation() {
 
   useEffect(() => {
     switch (celiaVerticalPosition) {
-      case 'top': {
+      case CELIA_VERTICAL_POSITION.TOP: {
         dispatch({
           type: ACTION_TYPES.SET_ANIMATION_FRAME,
           celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
@@ -108,7 +112,7 @@ export default function CeliaAnimation() {
         helloIntervalID.current = setInterval(() => helloAnimation(), 5000)
         break
       }
-      case 'bottom': {
+      case CELIA_VERTICAL_POSITION.BOTTOM: {
         if (activeSlide === 0)
           dispatch({
             type: ACTION_TYPES.SET_ANIMATION_FRAME,
@@ -138,7 +142,7 @@ export default function CeliaAnimation() {
   }
 
   useEffect(() => {
-    if (celiaVerticalPosition === 'transitioning') {
+    if (celiaVerticalPosition === CELIA_VERTICAL_POSITION.TRANSITIONING) {
       climbLadderIntervalRef.current = setInterval(() => climbAnimation(), 400)
     }
 
