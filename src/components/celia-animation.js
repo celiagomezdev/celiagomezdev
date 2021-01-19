@@ -2,7 +2,11 @@ import React, { useRef, useEffect, useContext } from 'react'
 import styles from './celia-animation.module.scss'
 import celiaFramesImage from '../static/img/celia-frames.png'
 import { Context } from '../context'
-import { ACTION_TYPES, CELIA_FRAMES_POSITION } from '../constants/index'
+import {
+  ACTION_TYPES,
+  CELIA_FRAMES_POSITION,
+  CELIA_ANIMATION_FRAMES,
+} from '../constants/index'
 
 // TODO: clean animation logics, consider moving them to actions/custom hooks file.
 // TODO: Check exhaustive deps issue
@@ -31,7 +35,7 @@ export default function CeliaAnimation() {
     // Set initial component state on first render
     dispatch({
       type: ACTION_TYPES.SET_ANIMATION_FRAME,
-      celiaAnimationFrame: 'FRONT',
+      celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
     })
     dispatch({
       type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
@@ -69,7 +73,9 @@ export default function CeliaAnimation() {
   useEffect(() => {
     // Fallback in case we receive IDLE
     const newFrame =
-      celiaAnimationFrame === 'IDLE' ? 'FRONT' : celiaAnimationFrame
+      celiaAnimationFrame === CELIA_ANIMATION_FRAMES.IDLE
+        ? CELIA_ANIMATION_FRAMES.FRONT
+        : celiaAnimationFrame
     celiaFramesRef.current.style.setProperty(
       '--animation-frame-position',
       `${CELIA_FRAMES_POSITION[newFrame]}rem`
@@ -86,7 +92,7 @@ export default function CeliaAnimation() {
       () =>
         dispatch({
           type: ACTION_TYPES.SET_ANIMATION_FRAME,
-          celiaAnimationFrame: 'FRONT',
+          celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
         }),
       1000
     )
@@ -97,7 +103,7 @@ export default function CeliaAnimation() {
       case 'top': {
         dispatch({
           type: ACTION_TYPES.SET_ANIMATION_FRAME,
-          celiaAnimationFrame: 'FRONT',
+          celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
         })
         helloIntervalID.current = setInterval(() => helloAnimation(), 5000)
         break
@@ -106,7 +112,7 @@ export default function CeliaAnimation() {
         if (activeSlide === 0)
           dispatch({
             type: ACTION_TYPES.SET_ANIMATION_FRAME,
-            celiaAnimationFrame: 'FRONT',
+            celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
           })
         break
       }

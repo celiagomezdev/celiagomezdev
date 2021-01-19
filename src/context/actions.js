@@ -1,15 +1,15 @@
-import { ACTION_TYPES } from '../constants/index'
+import { ACTION_TYPES, CELIA_ANIMATION_FRAMES } from '../constants/index'
 
 export default {
   moveToSlide(slide, state, dispatch) {
     if (
       state.celiaVerticalPosition === 'bottom' ||
-      state.celiaVerticalPosition === 'IDLE'
+      state.celiaVerticalPosition === CELIA_ANIMATION_FRAMES.IDLE
     ) {
       // Everytime we move to a different slide, celia should be frontwards
       dispatch({
         type: ACTION_TYPES.SET_ANIMATION_FRAME,
-        celiaAnimationFrame: 'FRONT',
+        celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
       })
       dispatch({ type: ACTION_TYPES.SET_ACTIVE_SLIDE, activeSlide: slide })
     } else {
