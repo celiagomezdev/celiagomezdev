@@ -58,7 +58,7 @@ export default function CeliaAnimation() {
       // We make sure that celia is backwards when the transition starts
       dispatch({
         type: ACTION_TYPES.SET_ANIMATION_FRAME,
-        celiaAnimationFrame: 'BACK_RIGHT_SIDE',
+        celiaAnimationFrame: CELIA_ANIMATION_FRAMES.BACK_RIGHT_SIDE,
       })
       dispatch({
         type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
@@ -91,7 +91,7 @@ export default function CeliaAnimation() {
   const helloAnimation = () => {
     dispatch({
       type: ACTION_TYPES.SET_ANIMATION_FRAME,
-      celiaAnimationFrame: 'FRONT_HELLO',
+      celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT_HELLO,
     })
     setTimeout(
       () =>
@@ -133,9 +133,9 @@ export default function CeliaAnimation() {
 
   const climbAnimation = () => {
     const newFramePosition =
-      celiaAnimationFrame === 'BACK_RIGHT_SIDE'
-        ? 'BACK_LEFT_SIDE'
-        : 'BACK_RIGHT_SIDE'
+      celiaAnimationFrame === CELIA_ANIMATION_FRAMES.BACK_RIGHT_SIDE
+        ? CELIA_ANIMATION_FRAMES.BACK_LEFT_SIDE
+        : CELIA_ANIMATION_FRAMES.BACK_RIGHT_SIDE
     dispatch({
       type: ACTION_TYPES.SET_ANIMATION_FRAME,
       celiaAnimationFrame: newFramePosition,
