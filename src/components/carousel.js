@@ -3,15 +3,10 @@ import classNames from 'classnames'
 import styles from './carousel.module.scss'
 import arrow from '../static/img/arrow.svg'
 import { Context, actions } from '../context'
-import {
-  ACTION_TYPES,
-  CELIA_VERTICAL_POSITION,
-  CELIA_ANIMATION_FRAMES,
-} from '../constants/index'
+import { ACTION_TYPES, CELIA_VERTICAL_POSITION } from '../constants/index'
 
 export default function Carousel() {
   const [sliderWidth, setSliderWidth] = useState()
-  // Use Context for accessing the state and actions to dispatch
   const [state, dispatch] = useContext(Context)
   const { activeSlide, celiaAnimationFrame, celiaVerticalPosition } = state
 
@@ -23,22 +18,20 @@ export default function Carousel() {
   const windowGlobal = typeof window !== 'undefined' && window
 
   useEffect(() => {
-    /**
-     * Set the position of each slide.
-     * We use negative values because we move them to the left.
-     */
     const sliderWidthOnRender = parseInt(
       getComputedStyle(slider.current).width,
       10
     )
     setSliderWidth(sliderWidthOnRender)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
     const sliderTransformPosition = sliderWidth * activeSlide
+    /**
+     * Set the position of each slide.
+     * We use negative values because we move them to the left.
+     */
     slider.current.style.transform = `translateX(-${sliderTransformPosition}px)`
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeSlide, sliderWidth])
 
   useEffect(() => {
@@ -47,39 +40,32 @@ export default function Carousel() {
       type: ACTION_TYPES.SET_ANIMATION_MAX_HEIGHT,
       animationMaxHeight: sliderHeight,
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
 
   useEffect(() => {
-    const showAnimation = () => {
-      const newFramePosition =
-        celiaAnimationFrame === CELIA_ANIMATION_FRAMES.BACK_TWO
-          ? CELIA_ANIMATION_FRAMES.BACK_THREE
-          : CELIA_ANIMATION_FRAMES.BACK_TWO
-      dispatch({
-        type: ACTION_TYPES.SET_ANIMATION_FRAME,
-        celiaAnimationFrame: newFramePosition,
-      })
-    }
-
-    const typeAnimation = () => {
-      const newFramePosition =
-        celiaAnimationFrame === CELIA_ANIMATION_FRAMES.SIT_ONE
-          ? CELIA_ANIMATION_FRAMES.SIT_TWO
-          : CELIA_ANIMATION_FRAMES.SIT_ONE
-      dispatch({
-        type: ACTION_TYPES.SET_ANIMATION_FRAME,
-        celiaAnimationFrame: newFramePosition,
-      })
-    }
-
     switch (activeSlide) {
       case 1:
-        const showIntervalId = setInterval(() => showAnimation(), 1000)
+        const showIntervalId = setInterval(
+          () =>
+            actions.setCarouselAnimation(
+              activeSlide,
+              celiaAnimationFrame,
+              dispatch
+            ),
+          1000
+        )
         showIntervalRef.current = showIntervalId
         break
       case 2:
-        const typeIntervalId = setInterval(() => typeAnimation(), 500)
+        const typeIntervalId = setInterval(
+          () =>
+            actions.setCarouselAnimation(
+              activeSlide,
+              celiaAnimationFrame,
+              dispatch
+            ),
+          500
+        )
         typeIntervalRef.current = typeIntervalId
         break
       default:

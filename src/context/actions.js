@@ -26,12 +26,38 @@ export default {
       )
     }
   },
-
   moveCeliaToHome(slide, state, dispatch) {
     this.moveToSlide(slide, state, dispatch)
     dispatch({
       type: ACTION_TYPES.SET_CELIA_VERTICAL_DIRECTION,
       celiaVerticalDirection: CELIA_VERTICAL_DIRECTION.TO_TOP,
     })
+  },
+  setCarouselAnimation(slide, frame, dispatch) {
+    let newFramePosition
+    switch (slide) {
+      case 1:
+        newFramePosition =
+          frame === CELIA_ANIMATION_FRAMES.BACK_TWO
+            ? CELIA_ANIMATION_FRAMES.BACK_THREE
+            : CELIA_ANIMATION_FRAMES.BACK_TWO
+        dispatch({
+          type: ACTION_TYPES.SET_ANIMATION_FRAME,
+          celiaAnimationFrame: newFramePosition,
+        })
+        break
+      case 2:
+        newFramePosition =
+          frame === CELIA_ANIMATION_FRAMES.SIT_ONE
+            ? CELIA_ANIMATION_FRAMES.SIT_TWO
+            : CELIA_ANIMATION_FRAMES.SIT_ONE
+        dispatch({
+          type: ACTION_TYPES.SET_ANIMATION_FRAME,
+          celiaAnimationFrame: newFramePosition,
+        })
+        break
+      default:
+        break
+    }
   },
 }
