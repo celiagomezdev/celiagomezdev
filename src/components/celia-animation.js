@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useContext } from 'react'
 import styles from './celia-animation.module.scss'
 import celiaFramesImage from '../static/img/celia-frames.png'
-import { Context } from '../context'
+import { Context, actions } from '../context'
 import {
   ACTION_TYPES,
   CELIA_FRAMES_POSITION,
@@ -29,6 +29,7 @@ export default function CeliaAnimation() {
   const currentDirection = useRef()
   const currentPosition = useRef()
   const helloIntervalID = useRef(null)
+  const _ = undefined
 
   const windowGlobal = typeof window !== 'undefined' && window
   const previousScroll = windowGlobal.scrollY
@@ -88,21 +89,6 @@ export default function CeliaAnimation() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [celiaAnimationFrame])
 
-  const helloAnimation = () => {
-    dispatch({
-      type: ACTION_TYPES.SET_ANIMATION_FRAME,
-      celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT_HELLO,
-    })
-    setTimeout(
-      () =>
-        dispatch({
-          type: ACTION_TYPES.SET_ANIMATION_FRAME,
-          celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
-        }),
-      1000
-    )
-  }
-
   useEffect(() => {
     switch (celiaVerticalPosition) {
       case CELIA_VERTICAL_POSITION.TOP: {
@@ -110,7 +96,10 @@ export default function CeliaAnimation() {
           type: ACTION_TYPES.SET_ANIMATION_FRAME,
           celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
         })
-        helloIntervalID.current = setInterval(() => helloAnimation(), 5000)
+        helloIntervalID.current = setInterval(
+          () => actions.setCeliaAnimation(_, _, dispatch),
+          5000
+        )
         break
       }
       case CELIA_VERTICAL_POSITION.BOTTOM: {
@@ -131,20 +120,12 @@ export default function CeliaAnimation() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [celiaVerticalPosition])
 
-  const climbAnimation = () => {
-    const newFramePosition =
-      celiaAnimationFrame === CELIA_ANIMATION_FRAMES.BACK_RIGHT_SIDE
-        ? CELIA_ANIMATION_FRAMES.BACK_LEFT_SIDE
-        : CELIA_ANIMATION_FRAMES.BACK_RIGHT_SIDE
-    dispatch({
-      type: ACTION_TYPES.SET_ANIMATION_FRAME,
-      celiaAnimationFrame: newFramePosition,
-    })
-  }
-
   useEffect(() => {
     if (celiaVerticalPosition === CELIA_VERTICAL_POSITION.TRANSITIONING) {
-      climbLadderIntervalRef.current = setInterval(() => climbAnimation(), 400)
+      climbLadderIntervalRef.current = setInterval(
+        () => actions.setCeliaAnimation(0, celiaAnimationFrame, dispatch),
+        400
+      )
     }
 
     return () => {
