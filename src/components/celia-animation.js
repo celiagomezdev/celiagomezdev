@@ -166,14 +166,27 @@ export default function CeliaAnimation() {
       /* Early return if we are positioned below 
       the middle section or we are not in the initial slide */
       if (windowGlobal.scrollY > 500 || activeSlide !== 0) return
-      const isGoingBottom = previousScroll < windowGlobal.scrollY
+      const isUserScrollingDown = previousScroll < windowGlobal.scrollY
+      const isUserScrollingUp = previousScroll > windowGlobal.scrollY
+      // Early return if user scrolls up but celia is already on top
+      if (
+        isUserScrollingUp &&
+        celiaVerticalPosition === CELIA_VERTICAL_POSITION.TOP
+      )
+        return
       animationGoTo(
-        isGoingBottom
+        isUserScrollingDown
           ? CELIA_VERTICAL_DIRECTION.TO_BOTTOM
           : CELIA_VERTICAL_DIRECTION.TO_TOP
       )
     }
-  }, [windowGlobal, activeSlide, previousScroll, dispatch])
+  }, [
+    windowGlobal,
+    activeSlide,
+    previousScroll,
+    celiaVerticalPosition,
+    dispatch,
+  ])
 
   return (
     <div
