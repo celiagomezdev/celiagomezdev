@@ -3,7 +3,11 @@ import classNames from 'classnames'
 import styles from './carousel.module.scss'
 import arrow from '../static/img/arrow.svg'
 import { Context, actions } from '../context'
-import { ACTION_TYPES, CELIA_VERTICAL_POSITION } from '../constants/index'
+import {
+  ACTION_TYPES,
+  CELIA_VERTICAL_POSITION,
+  CELIA_ANIMATION_FRAMES,
+} from '../constants/index'
 
 export default function Carousel() {
   const [sliderWidth, setSliderWidth] = useState()
@@ -49,7 +53,9 @@ export default function Carousel() {
   useEffect(() => {
     const showAnimation = () => {
       const newFramePosition =
-        celiaAnimationFrame === 'BACK_TWO' ? 'BACK_THREE' : 'BACK_TWO'
+        celiaAnimationFrame === CELIA_ANIMATION_FRAMES.BACK_TWO
+          ? CELIA_ANIMATION_FRAMES.BACK_THREE
+          : CELIA_ANIMATION_FRAMES.BACK_TWO
       dispatch({
         type: ACTION_TYPES.SET_ANIMATION_FRAME,
         celiaAnimationFrame: newFramePosition,
@@ -58,7 +64,9 @@ export default function Carousel() {
 
     const typeAnimation = () => {
       const newFramePosition =
-        celiaAnimationFrame === 'SIT_ONE' ? 'SIT_TWO' : 'SIT_ONE'
+        celiaAnimationFrame === CELIA_ANIMATION_FRAMES.SIT_ONE
+          ? CELIA_ANIMATION_FRAMES.SIT_TWO
+          : CELIA_ANIMATION_FRAMES.SIT_ONE
       dispatch({
         type: ACTION_TYPES.SET_ANIMATION_FRAME,
         celiaAnimationFrame: newFramePosition,
