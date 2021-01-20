@@ -47,7 +47,7 @@ export default function Carousel() {
       case 1:
         const showIntervalId = setInterval(
           () =>
-            actions.setCarouselAnimation(
+            actions.setCeliaAnimation(
               activeSlide,
               celiaAnimationFrame,
               dispatch
@@ -59,7 +59,7 @@ export default function Carousel() {
       case 2:
         const typeIntervalId = setInterval(
           () =>
-            actions.setCarouselAnimation(
+            actions.setCeliaAnimation(
               activeSlide,
               celiaAnimationFrame,
               dispatch

@@ -33,10 +33,22 @@ export default {
       celiaVerticalDirection: CELIA_VERTICAL_DIRECTION.TO_TOP,
     })
   },
-  setCarouselAnimation(slide, frame, dispatch) {
+  setCeliaAnimation(slide, frame, dispatch) {
     let newFramePosition
     switch (slide) {
+      // Climbing animation
+      case 0:
+        newFramePosition =
+          frame === CELIA_ANIMATION_FRAMES.BACK_RIGHT_SIDE
+            ? CELIA_ANIMATION_FRAMES.BACK_LEFT_SIDE
+            : CELIA_ANIMATION_FRAMES.BACK_RIGHT_SIDE
+        dispatch({
+          type: ACTION_TYPES.SET_ANIMATION_FRAME,
+          celiaAnimationFrame: newFramePosition,
+        })
+        break
       case 1:
+        // Show projects animation
         newFramePosition =
           frame === CELIA_ANIMATION_FRAMES.BACK_TWO
             ? CELIA_ANIMATION_FRAMES.BACK_THREE
@@ -47,6 +59,7 @@ export default {
         })
         break
       case 2:
+        // Skills computer animation
         newFramePosition =
           frame === CELIA_ANIMATION_FRAMES.SIT_ONE
             ? CELIA_ANIMATION_FRAMES.SIT_TWO
@@ -57,6 +70,19 @@ export default {
         })
         break
       default:
+        // Hello animation
+        dispatch({
+          type: ACTION_TYPES.SET_ANIMATION_FRAME,
+          celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT_HELLO,
+        })
+        setTimeout(
+          () =>
+            dispatch({
+              type: ACTION_TYPES.SET_ANIMATION_FRAME,
+              celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
+            }),
+          1000
+        )
         break
     }
   },
