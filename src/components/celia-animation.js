@@ -32,8 +32,8 @@ export default function CeliaAnimation() {
   const windowGlobal = typeof window !== 'undefined' && window
   const previousScroll = windowGlobal.scrollY
 
+  // Set initial animation states on first render
   useEffect(() => {
-    // Set initial component state on first render
     dispatch({
       type: ACTION_TYPES.SET_ANIMATION_FRAME,
       celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
@@ -44,6 +44,52 @@ export default function CeliaAnimation() {
     })
   }, [dispatch])
 
+  // Set desired frame position in celia-frames.png (container reference: celiaFramesRef)
+  useEffect(() => {
+    // Fallback in case we receive IDLE
+    const newFrame =
+      celiaAnimationFrame === CELIA_ANIMATION_FRAMES.IDLE
+        ? CELIA_ANIMATION_FRAMES.FRONT
+        : celiaAnimationFrame
+    celiaFramesRef.current.style.setProperty(
+      '--animation-frame-position',
+      `${CELIA_FRAMES_POSITION[newFrame]}rem`
+    )
+  }, [celiaAnimationFrame])
+
+  // Set animation/frame for top and bottom positions
+  useEffect(() => {
+    switch (celiaVerticalPosition) {
+      case CELIA_VERTICAL_POSITION.TOP: {
+        dispatch({
+          type: ACTION_TYPES.SET_ANIMATION_FRAME,
+          celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
+        })
+        // Setting Hello animation (check action for more reference)
+        helloIntervalID.current = setInterval(
+          () => actions.setCeliaAnimation(_, _, dispatch),
+          5000
+        )
+        break
+      }
+      case CELIA_VERTICAL_POSITION.BOTTOM: {
+        if (activeSlide === 0)
+          dispatch({
+            type: ACTION_TYPES.SET_ANIMATION_FRAME,
+            celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
+          })
+        break
+      }
+      default:
+        break
+    }
+
+    return () => {
+      clearInterval(helloIntervalID.current)
+    }
+  }, [celiaVerticalPosition, _, activeSlide, dispatch])
+
+  // Add transitionstart transitionend listeners for setting transitioning state
   useEffect(() => {
     const newPosition =
       celiaVerticalDirection === CELIA_VERTICAL_DIRECTION.TO_BOTTOM
@@ -72,50 +118,10 @@ export default function CeliaAnimation() {
     })
   }, [celiaVerticalDirection, dispatch])
 
-  useEffect(() => {
-    // Fallback in case we receive IDLE
-    const newFrame =
-      celiaAnimationFrame === CELIA_ANIMATION_FRAMES.IDLE
-        ? CELIA_ANIMATION_FRAMES.FRONT
-        : celiaAnimationFrame
-    celiaFramesRef.current.style.setProperty(
-      '--animation-frame-position',
-      `${CELIA_FRAMES_POSITION[newFrame]}rem`
-    )
-  }, [celiaAnimationFrame])
-
-  useEffect(() => {
-    switch (celiaVerticalPosition) {
-      case CELIA_VERTICAL_POSITION.TOP: {
-        dispatch({
-          type: ACTION_TYPES.SET_ANIMATION_FRAME,
-          celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
-        })
-        helloIntervalID.current = setInterval(
-          () => actions.setCeliaAnimation(_, _, dispatch),
-          5000
-        )
-        break
-      }
-      case CELIA_VERTICAL_POSITION.BOTTOM: {
-        if (activeSlide === 0)
-          dispatch({
-            type: ACTION_TYPES.SET_ANIMATION_FRAME,
-            celiaAnimationFrame: CELIA_ANIMATION_FRAMES.FRONT,
-          })
-        break
-      }
-      default:
-        break
-    }
-
-    return () => {
-      clearInterval(helloIntervalID.current)
-    }
-  }, [celiaVerticalPosition, _, activeSlide, dispatch])
-
+  // Set celia animation for transitioning state (climbing up and down the ladder)
   useEffect(() => {
     if (celiaVerticalPosition === CELIA_VERTICAL_POSITION.TRANSITIONING) {
+      // Setting Climbing animation (check action for more reference)
       climbLadderIntervalRef.current = setInterval(
         () => actions.setCeliaAnimation(0, celiaAnimationFrame, dispatch),
         400
@@ -127,31 +133,7 @@ export default function CeliaAnimation() {
     }
   }, [celiaVerticalPosition, celiaAnimationFrame, dispatch])
 
-  useEffect(() => {
-    switch (celiaVerticalDirection) {
-      case CELIA_VERTICAL_DIRECTION.TO_TOP: {
-        if (windowGlobal.scrollY === 0) return
-        celiaAnimationRef.current.style.setProperty(
-          'transform',
-          `translateY(0)`
-        )
-        break
-      }
-      case CELIA_VERTICAL_DIRECTION.TO_BOTTOM: {
-        // TODO: find a better way to set the maximum height without adding those extra 2px
-        celiaAnimationRef.current.style.setProperty(
-          'transform',
-          `translateY(${animationMaxHeight + 2}px)`
-        )
-        break
-      }
-      default:
-        break
-    }
-    // We needed to exclude windowGlobal.scrollY as dependency, it was casing double invocation of the effect
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [celiaVerticalDirection, animationMaxHeight])
-
+  // Set vertical direction (to_top, to_bottom) depending on if user is scrolling up or down
   useEffect(() => {
     const animationGoTo = direction => {
       if (currentDirection.current === direction) return
@@ -164,7 +146,7 @@ export default function CeliaAnimation() {
 
     windowGlobal.onscroll = () => {
       /* Early return if we are positioned below 
-      the middle section or we are not in the initial slide */
+        the middle section or we are not in the initial slide */
       if (windowGlobal.scrollY > 500 || activeSlide !== 0) return
       const isUserScrollingDown = previousScroll < windowGlobal.scrollY
       const isUserScrollingUp = previousScroll > windowGlobal.scrollY
@@ -187,6 +169,33 @@ export default function CeliaAnimation() {
     celiaVerticalPosition,
     dispatch,
   ])
+
+  // Set translateY css property value for to_top and to_bottom directions
+  useEffect(() => {
+    switch (celiaVerticalDirection) {
+      case CELIA_VERTICAL_DIRECTION.TO_TOP: {
+        if (windowGlobal.scrollY === 0) return
+        celiaAnimationRef.current.style.setProperty(
+          'transform',
+          `translateY(0)`
+        )
+        break
+      }
+      case CELIA_VERTICAL_DIRECTION.TO_BOTTOM: {
+        // TODO: find a better way to set the maximum height without adding those extra 2px
+        celiaAnimationRef.current.style.setProperty(
+          'transform',
+          `translateY(${animationMaxHeight + 2}px)`
+        )
+        break
+      }
+      default:
+        break
+    }
+    /* TODO: We needed to exclude windowGlobal.scrollY as dependency in the array, as
+    it was causing undesired double invocation of the effect. Check if there is a better solution. */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [celiaVerticalDirection, animationMaxHeight])
 
   return (
     <div
