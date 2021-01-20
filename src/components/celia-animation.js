@@ -10,8 +10,6 @@ import {
   CELIA_VERTICAL_DIRECTION,
 } from '../constants/index'
 
-// TODO: clean animation logics, consider moving them to actions/custom hooks file.
-// TODO: Check exhaustive deps issue
 export default function CeliaAnimation() {
   const [state, dispatch] = useContext(Context)
 
@@ -44,8 +42,7 @@ export default function CeliaAnimation() {
       type: ACTION_TYPES.SET_CELIA_VERTICAL_POSITION,
       celiaVerticalPosition: CELIA_VERTICAL_POSITION.TOP,
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     const newPosition =
@@ -73,8 +70,7 @@ export default function CeliaAnimation() {
         celiaVerticalPosition: currentPosition.current,
       })
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [celiaVerticalDirection])
+  }, [celiaVerticalDirection, dispatch])
 
   useEffect(() => {
     // Fallback in case we receive IDLE
@@ -86,7 +82,6 @@ export default function CeliaAnimation() {
       '--animation-frame-position',
       `${CELIA_FRAMES_POSITION[newFrame]}rem`
     )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [celiaAnimationFrame])
 
   useEffect(() => {
@@ -117,8 +112,7 @@ export default function CeliaAnimation() {
     return () => {
       clearInterval(helloIntervalID.current)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [celiaVerticalPosition])
+  }, [celiaVerticalPosition, _, activeSlide, dispatch])
 
   useEffect(() => {
     if (celiaVerticalPosition === CELIA_VERTICAL_POSITION.TRANSITIONING) {
@@ -131,8 +125,7 @@ export default function CeliaAnimation() {
     return () => {
       clearInterval(climbLadderIntervalRef.current)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [celiaVerticalPosition, celiaAnimationFrame])
+  }, [celiaVerticalPosition, celiaAnimationFrame, dispatch])
 
   useEffect(() => {
     switch (celiaVerticalDirection) {
@@ -155,10 +148,20 @@ export default function CeliaAnimation() {
       default:
         break
     }
+    // We needed to exclude windowGlobal.scrollY as dependency, it was casing double invocation of the effect
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [celiaVerticalDirection])
+  }, [celiaVerticalDirection, animationMaxHeight])
 
   useEffect(() => {
+    const animationGoTo = direction => {
+      if (currentDirection.current === direction) return
+      currentDirection.current = direction
+      dispatch({
+        type: ACTION_TYPES.SET_CELIA_VERTICAL_DIRECTION,
+        celiaVerticalDirection: direction,
+      })
+    }
+
     windowGlobal.onscroll = () => {
       /* Early return if we are positioned below 
       the middle section or we are not in the initial slide */
@@ -170,17 +173,7 @@ export default function CeliaAnimation() {
           : CELIA_VERTICAL_DIRECTION.TO_TOP
       )
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [windowGlobal, activeSlide, previousScroll])
-
-  const animationGoTo = direction => {
-    if (currentDirection.current === direction) return
-    currentDirection.current = direction
-    dispatch({
-      type: ACTION_TYPES.SET_CELIA_VERTICAL_DIRECTION,
-      celiaVerticalDirection: direction,
-    })
-  }
+  }, [windowGlobal, activeSlide, previousScroll, dispatch])
 
   return (
     <div
