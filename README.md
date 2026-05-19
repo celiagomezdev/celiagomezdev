@@ -1,6 +1,6 @@
 # celiagomezdev
 
-Personal website built with Gatsby and React. 🚧 Under construction 🚧.
+Personal website built with Gatsby and React. Built in 2020.
 
 &nbsp;
 ## 🚀 Current deployed version
